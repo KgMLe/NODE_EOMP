@@ -1,6 +1,8 @@
+
+require('dotenv').config();
 const express = require("express");
 const routes = express.Router();
-
+const bodyParser = require("body-parser")
 //--------------------------------------
 //----------------------------------------------------
 //-----------routing to USERS-----------------------
@@ -32,3 +34,8 @@ routes.get("/users", (req, res) => {
   routes.post("/login", bodyParser.json(), (req, res) => {
       users.login(req, res);
     });
+
+    
+module.exports = {
+    routes
+  }
