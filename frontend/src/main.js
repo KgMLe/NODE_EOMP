@@ -9,10 +9,7 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // import tailwindcss
-import 'tailwindcss/base.css';
-import 'tailwindcss/components.css';
-import 'tailwindcss/utilities.css'
-import '@tailwindcss/aspect-ratio'
+
 
 
 createApp(App).use(store).use(router).mount('#app')

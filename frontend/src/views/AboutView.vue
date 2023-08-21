@@ -1,49 +1,47 @@
 <template>
-  <div class="overflow-hidden bg-white py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-        <div class="lg:pr-8 lg:pt-4">
-          <div class="lg:max-w-lg">
-            <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
-            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better workflow</p>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.</p>
-            <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-              <div v-for="feature in features" :key="feature.name" class="relative pl-9">
-                <dt class="inline font-semibold text-gray-900">
-                  <component :is="feature.icon" class="absolute left-1 top-1 h-5 w-5 text-indigo-600" aria-hidden="true" />
-                  {{ feature.name }}
-                </dt>
-                {{ ' ' }}
-                <dd class="inline">{{ feature.description }}</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-        <img src="https://www.health.com/thmb/BoBpPmfuSUv3g-R9vpYbzlxtX1k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Health-Stocksy_txp21856698W5h300_Medium_4329119-6861a908fb5346bea17dd46915bfe3c4.jpg" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442" />
+ <div class="container-fluid" style="padding:3% ;">
+    <div class="row">
+      <div class="col-sm-6">
+        <H1 id="name">
+          FIT SPACE<br>SOLUTIONS
+        </H1>
+        <h3>
+          Discover the Future of Home Fitness with Us!
+        </h3>
+
+        <p>
+          At Fit Space Solutions, we understand that space shouldn't limit your commitment to a healthier lifestyle. That's why we've meticulously curated a selection of home gym equipment that caters to both expansive and cozy living spaces. Whether you have a spacious dedicated room or a compact corner, we have the perfect solutions to transform your space into a fitness sanctuary.
+        </p>
+          <br>
+       <p>
+        We believe that fitness knows no boundaries, and neither should your living space. Explore our range of cardio solutions that embrace versatility, functionality, and space-conscious designs. With Fit Space, achieving your fitness goals has never been this convenient or accessible. Transform your home, transform your life and start your fitness journey with us today!
+      </p>  
+
       </div>
+    <div class="col-sm-6" style="padding-top:1%;">
+
+      <img src="https://i.postimg.cc/tTsd0P8k/Tempo-Studio-Review-2-1024x1024.jpg" alt="gym">
+      
+    </div>
     </div>
   </div>
 </template>
 
-<script setup>
-// import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/vue/20/solid'
+<script>
 
-// const features = [
-//   {
-//     name: 'Push to deploy.',
-//     description:
-//       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-//     icon: CloudArrowUpIcon,
-//   },
-//   {
-//     name: 'SSL certificates.',
-//     description: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.',
-//     icon: LockClosedIcon,
-//   },
-//   {
-//     name: 'Database backups.',
-//     description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
-//     icon: ServerIcon,
-//   },
-// ]
 </script>
+
+<style>
+#name{
+  font-size: 7rem;
+}
+
+p{
+  text-align: justify;
+  padding-right: 10%;
+}
+
+img[alt= "gym"]{
+    width: 45rem;
+}
+</style>
