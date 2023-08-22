@@ -5,14 +5,18 @@
         User <br> Administration
        </p>
      </div>  
-     <div class="row">
-        <table class="table">
+     <div class="row" style="padding: 3%;">
+        <table class="table" v-for="user in Products" :key= "user.userID">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">userID</th>
+      <th scope="col">Profile</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Age</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Email </th>
+      <th scope="col">Role</th>
     </tr>
   </thead>
   <tbody>
@@ -22,17 +26,7 @@
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    
   </tbody>
 </table>
      </div>
@@ -40,14 +34,27 @@
         <p id="admin">
             Product <br> Administration
         </p>
-     </div>  
+     </div> 
+     
+     
     </div>
 </template>
   
   <script>
-  export default {
-   
-  }
+//   import SpinnerComp from '@/components/SpinNer.vue'
+    export default {
+       components: {
+        // SpinnerComp
+       }, 
+       computed:{
+        users(){
+            return this.$store.state.users
+        }
+       },
+       mounted(){
+        this.$store.dispatch('fetchUsers')
+       } 
+    }
   </script>
 
   <style>

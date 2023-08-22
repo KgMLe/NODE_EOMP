@@ -48,8 +48,18 @@ export default createStore({
       }catch(e){
         context.commit("setMsg", "An error occured")
       }
+    },
+    async fetchUsers(context){
+      try{
+          const {data} = await axios.get(`${eompBackend}users`)
+          context.commit("setUsers", data.results )
+      }catch(e){
+        context.commit("setMsg", "An error occured")
+      }
     }
+  
   },
+    
   modules: {
   }
 })
