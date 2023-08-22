@@ -12,15 +12,28 @@ body{
 
 table{
 border-collapse: collapse;
+width: 100%;
 }
 
+th{
+    background-color: #0B0B0B;
+    color: white;
+}
 td,th{
     padding: 20px;
 }
 
 h4{
     margin: 10px;
-    background-color: #0B0B0B;
+    background-color:rgba(0, 0, 255, 0.515);
     color: white;
     
 }
+
+/* @ media queries */
+@media(width < 700px){
+    td,th{
+        font-size: 10px;
+    }
+}
+ 

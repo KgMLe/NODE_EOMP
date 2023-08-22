@@ -38,7 +38,29 @@ class Products{
             }
         });
     }
+    //register
+    registerProduct(req, res) {
+        const data = req.body;
+        const query = `
+        INSERT INTO Products
+        SET ?
+        `;
     
+        db.query(query, [data], (err) => {
+            if (err) {
+                console.error("Error registering product:", err);
+                return res.status(500).json({
+                    status: 500,
+                    error: "Failed to register the product"
+                });
+            }
+    
+            res.json({
+                status: res.statusCode,
+                msg: "Product registered successfully"
+            });
+        });
+    }
     //update product
     updateProduct(req, res){
         const query =`
