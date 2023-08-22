@@ -48,6 +48,11 @@ routes.get("/products", (req, res) => {
 routes.get("/product/:id", (req, res) => {
   products.fetchProduct(req, res);
 });
+ 
+//register user
+routes.post("/product/register", bodyParser.json(), (req, res) => {
+  products.registerProduct(req, res);
+});
 // delete user
 routes.delete("/product/:id", (req, res) => {
   products.deleteProduct(req, res);
