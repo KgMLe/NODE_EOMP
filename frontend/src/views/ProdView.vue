@@ -3,8 +3,8 @@
 <div class="row" id="prodpage">
 <p id="prodintro">SHOP           OUR             PRODUCTS</p>
 </div>
-      <div class="mt-4 row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" style= "padding:3%" v-if="Products">
-        <div v-for="product in Products" :key= "product.prodID" class="col">
+      <div class="mt-4 row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" style= "padding:3%" v-if="products">
+        <div v-for="product in products" :key= "product.prodID" class="col">
           <div class="group position-relative">
             <div class="ratio ratio-1x1 w-100 overflow-hidden rounded-md bg-secondary group-hover-opacity-75">
               <img :src="product.prodUrl" :alt="product.imageAlt" class="h-100 w-100 object-cover" />
@@ -18,7 +18,7 @@
                     {{ product.prodName }}
                   </a>
                 </h4>
-                <p class="mt-1 text-sm text-muted">{{ product.Category}}</p>
+                <p class="mt-1 text-sm text-muted">{{ product.category}}</p>
               </div>
               <p class="text-sm font-weight-medium text-dark">{{ product.amount }}</p>
             </div>
