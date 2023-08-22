@@ -1,52 +1,68 @@
 <template>
-  <div>
-    <div class="bg-gray-100">
-  <div class="container-xl px-4 py-5">
-    <div class="mx-auto max-w-2xl py-4">
-      <h1 class="h1">Shop by Collection</h1>
-
-      <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-        <div class="col">
-          <div class="position-relative h-80 overflow-hidden rounded-lg" >
-            <img src="https://i.postimg.cc/y6cG1mvN/WalkingPad.jpg" alt="category" class="img-fluid h-100 w-100 object-cover">
+  <div class="container-fluid">
+<div class="row" id="prodpage">
+<p id="prodintro">SHOP           OUR             PRODUCTS</p>
+</div>
+      <div class="mt-4 row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" style= "padding:3%;" v-if="users">
+        <div v-for="product in products" :key= "product.prodID" class="col">
+          <div class="group position-relative">
+            <div class="ratio ratio-1x1 w-100 overflow-hidden rounded-md bg-secondary group-hover-opacity-75">
+              <img :src="product.prodUrl" :alt="product.imageAlt" class="h-100 w-100 object-cover" />
+            </div>
+            <div class="mt-4 d-flex justify-content-between">
+              <div>
+                <h4 class="text-sm text-dark">
+                  <!-- this should give us the option to view ore details -->
+                  <a :href="product.href">
+                    <span aria-hidden="true" class="position-absolute inset-0"></span>
+                    {{product.prodName}}
+                  </a>
+                </h4>
+                <p class="mt-1 text-sm text-muted">{{product.Category}}</p>
+              </div>
+              <p class="text-sm font-weight-medium text-dark">{{product.amount }}</p>
+            </div>
           </div>
-          <h3 class="mt-3 h6">
-            <a href="#" class="text-decoration-none">Cardio</a>
-          </h3>
-          <p> Elevate your heart rate and enhance endurance with our dynamic range of cardio equipment, designed to invigorate your workouts and boost your fitness journey. </p>
-        </div>
-        <div class="col">
-          <div class="position-relative h-80 overflow-hidden rounded-lg">
-            <img src="https://i.postimg.cc/bvLtW48K/image.jpg" alt="category" class="img-fluid h-100 w-100 object-cover">
-          </div>
-          <h3 class="mt-3 h6">
-            <a href="#" class="text-decoration-none">Weights</a>
-          </h3>
-          <p>Sculpt, strengthen, and define with precision using our premium selection of weights and accessories, tailored to provide a comprehensive and versatile home gym experience.</p>
-        </div>
-        <div class="col">
-          <div class="position-relative h-80 overflow-hidden rounded-lg">
-            <img src="https://i.postimg.cc/PJT4G9RZ/Best-Home-Gym-Equipment-2020.jpg" alt="category" class="img-fluid h-100 w-100 object-cover">
-          </div>
-          <h3 class="mt-3 h6">
-            <a href="#" class="text-decoration-none">Gym Accessories</a>
-          </h3>
-          <p> From supportive gear that perfects your form, to innovative tools adding an extra challenge, our accessories are the perfect complement to your fitness journey.</p>
         </div>
       </div>
+      <div v-else class="row justify-content-center">
+        <SpinnerComp/>
     </div>
-  </div>
-</div>
-
-  </div>
+    </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+import SpinnerComp from '@/components/SpinNer.vue'
+export default {
+       components: {
+        SpinnerComp
+       },
+       computed:{
+        products(){
+            return this.$store.state.products
+        }
+       },
+       mounted(){
+        this.$store.dispatch('fetchProducts')
+       } 
+       }
 </script>
 
-<style  scoped>
+<style scoped>
+#prodpage{
+background-image: url("https://i.postimg.cc/MTHNk2k4/best-home-workout-equipment.jpg");
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+
+#prodintro{
+  text-align: center;
+  padding: 3%;
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+}
 
 </style>

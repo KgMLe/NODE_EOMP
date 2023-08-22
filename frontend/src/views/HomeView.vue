@@ -29,7 +29,7 @@
 
 <style scoped>
 #landingpage{
-background-image: url("https://i.postimg.cc/859jBvcf/66d4683bbf2ef4b376782db5c9a3e9a1.jpg");
+background-image: url("https://www.health.com/thmb/hH7gFOHHW6uWj_BeiWQQlRZsOcM=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Health-Stocksy_txp21856698W5h300_Medium_4329119-6861a908fb5346bea17dd46915bfe3c4.jpg");
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
@@ -40,6 +40,7 @@ background-size: cover;
   padding: 10%;
   color: #fff;
   text-align: center;
+  font-weight: bolder;
 
 }
 
