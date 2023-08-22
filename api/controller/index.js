@@ -20,12 +20,13 @@ routes.get("/users", (req, res) => {
 routes.get("/user/:id", (req, res) => {
   users.fetchUser(req, res);
 });
+ 
 //register user
 routes.post("/register", bodyParser.json(), (req, res) => {
   users.register(req, res);
 });
 //update user
-routes.patch("/users/:id", bodyParser.json(), (req, res) => {
+routes.patch("/user/:id", bodyParser.json(), (req, res) => {
   users.updateUser(req, res);
 });
 //delete user

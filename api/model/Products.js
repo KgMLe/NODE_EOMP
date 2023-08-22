@@ -4,7 +4,7 @@ class Products{
     fetchProducts(req,res){
         const query =`
         SELECT prodID,prodName,quantity,amount,
-        Category,prodUrl TEXT
+        Category,prodUrl
         FROM Products;
         `
         db.query(query,
@@ -20,19 +20,25 @@ class Products{
     fetchProduct(req, res){
         const query = `
         SELECT prodID,prodName,quantity,amount,
-        Category,prodUrl TEXT
-        FROM Products;
-        WHERE prodID = ${req.params.id}
+        Category,prodUrl
+        FROM Products
+        WHERE prodID = ?
         `
-        db.query(query,
-            (err, result) => {
-               if(err) throw err
-               res.json({
-                   status: res.statusCode,
-                   result
-               })
-            } )
+        db.query(query, [req.params.id], (err, result) => {
+            if (err) { 
+                console.error(err);
+                res.status(500).json({
+                    error: "An error occurred while fetching the user.",
+                });
+            } else {
+                res.status(200).json({
+                    status: res.statusCode,
+                    result,
+                });
+            }
+        });
     }
+    
     //update product
     updateProduct(req, res){
         const query =`

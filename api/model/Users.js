@@ -18,23 +18,30 @@ class Users{
                 })
              } )
     }
-    //fetch one user
-    fetchUser(req, res){
+    //fetch single user
+    fetchUser(req, res) {
         const query = `
-        SELECT userID,firstName,lastName,userAge,
-        Gender,userRole,emailAdd,userProfile
+        SELECT userID, firstName, lastName, userAge,
+        Gender, userRole, emailAdd, userProfile
         FROM Users
-        where userID = ${req.params.id};
-        `
-        db.query(query,
-            (err, result) => {
-               if(err) throw err
-               res.json({
-                   status: res.statusCode,
-                   result
-               })
-            } )
+        WHERE userID = ?;
+        `;
+    
+        db.query(query, [req.params.id], (err, result) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({
+                    error: "An error occurred while fetching the user.",
+                });
+            } else {
+                res.status(200).json({
+                    status: res.statusCode,
+                    result,
+                });
+            }
+        });
     }
+    //---------------------------------
     //login a user
     login(req, res) {
         const {emailAdd, userPass} = req.body // pipeline
@@ -114,7 +121,7 @@ class Users{
     const query =`
         UPDATE Users
         SET?
-        WHERE userID =?
+        WHERE userID = ?
         `
         db.query(query,[req.body, req.params],
             (err) => {
