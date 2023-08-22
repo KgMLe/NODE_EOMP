@@ -33,7 +33,7 @@
     background-color: rgb(249, 249, 249);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto minmax(10vh, 1fr) auto;
+    grid-template-rows: auto minmax(0vh, 1fr) auto;
   }
 
   #app > *{
