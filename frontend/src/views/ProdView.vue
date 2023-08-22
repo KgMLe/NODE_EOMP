@@ -3,35 +3,35 @@
     <div class="bg-gray-100">
   <div class="container-xl px-4 py-5">
     <div class="mx-auto max-w-2xl py-4">
-      <h2 class="h2 text-gray-900">Collections</h2>
+      <h1 class="h1">Shop by Collection</h1>
 
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
         <div class="col">
-          <div class="position-relative h-80 overflow-hidden rounded-lg bg-white aspect-ratio" >
-            <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg" alt="category" class="img-fluid h-100 w-100 object-cover">
+          <div class="position-relative h-80 overflow-hidden rounded-lg" >
+            <img src="https://i.postimg.cc/y6cG1mvN/WalkingPad.jpg" alt="category" class="img-fluid h-100 w-100 object-cover">
           </div>
           <h3 class="mt-3 h6">
-            <a href="#" class="text-decoration-none text-gray-500">Cardio</a>
+            <a href="#" class="text-decoration-none">Cardio</a>
           </h3>
-          <p class="text-sm font-weight-bold text-gray-900">Cardio machines to get the heart pumping. Suitable every space </p>
+          <p> Elevate your heart rate and enhance endurance with our dynamic range of cardio equipment, designed to invigorate your workouts and boost your fitness journey. </p>
         </div>
         <div class="col">
-          <div class="position-relative h-80 overflow-hidden rounded-lg bg-white aspect-ratio">
-            <img src="" alt="category">
+          <div class="position-relative h-80 overflow-hidden rounded-lg">
+            <img src="https://i.postimg.cc/bvLtW48K/image.jpg" alt="category" class="img-fluid h-100 w-100 object-cover">
           </div>
           <h3 class="mt-3 h6">
-            <a href="#" class="text-decoration-none text-gray-500">Self-Improvement</a>
+            <a href="#" class="text-decoration-none">Weights</a>
           </h3>
-          <p class="text-sm font-weight-bold text-gray-900">Journals and note-taking</p>
+          <p>Sculpt, strengthen, and define with precision using our premium selection of weights and accessories, tailored to provide a comprehensive and versatile home gym experience.</p>
         </div>
         <div class="col">
-          <div class="position-relative h-80 overflow-hidden rounded-lg bg-white aspect-ratio">
-            <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg" alt="category" class="img-fluid h-100 w-100 object-cover">
+          <div class="position-relative h-80 overflow-hidden rounded-lg">
+            <img src="https://i.postimg.cc/PJT4G9RZ/Best-Home-Gym-Equipment-2020.jpg" alt="category" class="img-fluid h-100 w-100 object-cover">
           </div>
           <h3 class="mt-3 h6">
-            <a href="#" class="text-decoration-none text-gray-500">Travel</a>
+            <a href="#" class="text-decoration-none">Gym Accessories</a>
           </h3>
-          <p class="text-sm font-weight-bold text-gray-900">Daily commute essentials</p>
+          <p> From supportive gear that perfects your form, to innovative tools adding an extra challenge, our accessories are the perfect complement to your fitness journey.</p>
         </div>
       </div>
     </div>
