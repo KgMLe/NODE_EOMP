@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-const eompBackend = "https://fitspacesolutions.onrender.com" 
+const eompBackend = "https://fit-space-ssmq.onrender.com/" 
 
 export default createStore({
   state: {

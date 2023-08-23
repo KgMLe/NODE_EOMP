@@ -8,7 +8,7 @@
   <div class="container">
     <div class="row">
       <h5 id="welcome">
-      Welcome to our premier home gym equipment website, where fitness meets convenience. Explore a wide range of meticulously curated exercise gear designed to transform any space into a personal fitness haven. From compact cardio machines to versatile weights and cutting-edge accessories, we offer everything you need to elevate your workouts and achieve your health goals without leaving the comfort of your home. Browse now and embark on a journey to a fitter, healthier you.
+      Welcome to Fit Space Solutions, a premier home gym equipment site, where fitness meets convenience. Explore a wide range of meticulously curated exercise gear designed to transform any space into a personal fitness haven. From compact cardio machines to versatile weights and cutting-edge accessories, we offer everything you need to elevate your workouts and achieve your health goals without leaving the comfort of your home. Browse now and embark on a journey to a fitter, healthier you.
      </h5>
     </div>
   </div>
