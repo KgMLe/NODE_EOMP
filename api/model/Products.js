@@ -1,12 +1,18 @@
 const db = require ("../config")
+
+//----------Targeting category options-----------
+//need to import logic from frontend
+let Category = "Treadmill"
+//-----------------------------------------------
 class Products{
     // fetch all products
     fetchProducts(req,res){
         const query =`
         SELECT prodID,prodName,quantity,amount,
         Category,prodUrl
-        FROM Products;
-        `
+        FROM Products
+        WHERE  Category = '${Category}';
+        ` 
         db.query(query,
             (err,results) => {
                 if(err) throw err
