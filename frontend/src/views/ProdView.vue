@@ -18,9 +18,9 @@
                     {{ product.prodName }}
                   </a>
                 </h4>
-                <p class="mt-1 text-sm text-muted">{{ product.category}}</p>
+                <p class="mt-1 text-sm text-muted">{{ product.Category}}</p>
               </div>
-              <p class="text-sm font-weight-medium text-dark">{{ product.amount }}</p>
+              <p class="text-sm font-weight-medium text-dark">R:{{ product.amount }}</p>
             </div>
           </div>
         </div>
@@ -28,14 +28,19 @@
       <div v-else class="row justify-content-center">
         <SpinnerComp/>
     </div>
+    <div>
+      <SingleProd/>
+    </div>
     </div>
 </template>
 
 <script>
 import SpinnerComp from '@/components/SpinNer.vue'
+import SingleProd from './SingleProd.vue'
 export default {
        components:{
-        SpinnerComp
+        SpinnerComp,
+        SingleProd
        },
        computed:{
         products(){

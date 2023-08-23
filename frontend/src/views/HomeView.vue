@@ -50,5 +50,8 @@ background-size: cover;
   text-align: center;
 }
 
+img[alt= "category"]{
+    border-radius: 50%;
+}
 
 </style>
