@@ -2,25 +2,48 @@ const db = require ("../config")
 
 //----------Targeting category options-----------
 //need to import logic from frontend
-let Category = "Treadmill"
+// let Category = "Treadmill"
+let order = "asc" // ascending or descending
+let sort = "prodID" //price or name
+let search = "walk" //get the alphabets punched
 //-----------------------------------------------
 class Products{
     // fetch all products
     fetchProducts(req,res){
-        const query =`
-        SELECT prodID,prodName,quantity,amount,
-        Category,prodUrl
-        FROM Products
-        WHERE  Category = '${Category}';
-        ` 
-        db.query(query,
-            (err,results) => {
-                if(err) throw err
-                res.json({
-                    status:res.statusCode,
-                    results
+        if( search === ''){
+            const query =`
+            SELECT prodID,prodName,quantity,amount,
+            Category,prodUrl
+            FROM Products
+            WHERE  Category = '${Category}'
+            ORDER BY ${sort} ${order};
+            `
+            db.query(query,
+                (err,results) => {
+                    if(err) throw err
+                    res.json({ 
+                        status:res.statusCode,
+                        results
+                    })
                 })
-            })
+        }else{
+            const query =`
+            SELECT prodID,prodName,quantity,amount,
+            Category,prodUrl
+            FROM Products
+            WHERE  prodName LIKE '${search}%'
+            ORDER BY ${sort} ${order};
+            `
+            db.query(query,
+                (err,results) => {
+                    if(err) throw err
+                    res.json({ 
+                        status:res.statusCode,
+                        results
+                    })
+                })
+        }
+       
     }
     // fetch single product
     fetchProduct(req, res){
