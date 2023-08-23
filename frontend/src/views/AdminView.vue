@@ -63,6 +63,7 @@
     </div>
   </div>
 </div>
+<!-- Users Table -->
       <table class="table">
         <thead>
           <tr>
@@ -150,6 +151,23 @@ export default {
     this.$store.dispatch('fetchUsers'),
     this.$store.dispatch('fetchProducts')
   },
+  
+  // products add 
+
+  // methods: {
+  //   createProductPayload() {
+  //     return {
+  //       prodName: "",
+  //       quantity: "",
+  //       amount: "",
+  //       category: "",
+  //       prodUrl: ""
+  //     };
+  //   }
+  // const message = await this.addUser(newUser);
+  // console.log(message);
+  // },
+
 
 };
  

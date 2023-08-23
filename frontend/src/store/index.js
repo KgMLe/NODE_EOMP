@@ -23,6 +23,12 @@ export default createStore({
     setUser(state, user){
       state.user = user
     },
+    addUser(state, user){
+      state.users.push(user)
+    },
+    addProduct (state, product){
+      state.users.push(product)
+    },
     setProducts(state, products){
       state.products = products
     },
@@ -39,7 +45,7 @@ export default createStore({
       state.msg = msg
     },
   },
-
+  // fetch products
   actions: {
     async fetchProducts(context){
       try{
@@ -49,6 +55,7 @@ export default createStore({
         context.commit("setMsg", "An error occured")
       }
     },
+    // fetch users
     async fetchUsers(context){
       try{
           const {data} = await axios.get(`${eompBackend}users`)
@@ -56,8 +63,39 @@ export default createStore({
       }catch(e){
         context.commit("setMsg", "An error occured")
       }
-    }
+    },  
+      // add Product
+    async addProduct(context, payload) {
+        try {
+          const response = await axios.post(`${eompBackend}product/add`, payload);
+          const { msg, product } = response.data;
+    
+          if (msg) {
+            context.commit("setMsg", msg);
+          } else {
+            context.commit("addProduct", product);
+            context.commit("setMsg", "Product added successfully");
+          }
+        } catch (e) {
+          context.commit("setMsg", "An error occurred while adding the product");
+        }
+    },
+    // addUser
+    async addUser(context, payload) {
+      try {
+        const response = await axios.post(`${eompBackend}user/add`, payload);
+        const { msg, user } = response.data;
   
+        if (msg) {
+          context.commit("setMsg", msg);
+        } else {
+          context.commit("addUser", user); // Update the users array in the state
+          context.commit("setMsg", "User added successfully");
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error occurred while adding the user");
+      }
+    },
   },
     
   modules: {
