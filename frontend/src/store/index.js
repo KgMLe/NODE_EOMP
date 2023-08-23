@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-const eompBackend = "https://fitspacesolutions.onrender.com" 
+const eompBackend = "https://fit-space-ssmq.onrender.com/" 
 
 export default createStore({
   state: {
@@ -48,8 +48,18 @@ export default createStore({
       }catch(e){
         context.commit("setMsg", "An error occured")
       }
+    },
+    async fetchUsers(context){
+      try{
+          const {data} = await axios.get(`${eompBackend}users`)
+          context.commit("setUsers", data.results )
+      }catch(e){
+        context.commit("setMsg", "An error occured")
+      }
     }
+  
   },
+    
   modules: {
   }
 })
