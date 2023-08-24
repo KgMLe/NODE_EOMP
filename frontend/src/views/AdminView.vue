@@ -4,6 +4,66 @@
       <p id="admin">User<br>Administration</p>
     </div>
     <div class="row" style="padding: 3%;">
+      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ Add User
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    <form >
+  <!-- Profile image  -->
+  <div class="mb-3">
+  <label for="userImage" class="form-label">Image Url</label>
+  <input type="text" class="form-control" id="userImage">
+  </div>
+  <!-- first name -->
+  <div class="mb-3">
+  <label for="firstName" class="form-label">First Name</label>
+  <input type="text" class="form-control" id="firstName">
+  </div>
+  <!-- last name -->
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name</label>
+  <input type="text" class="form-control" id="lastName">
+  </div>
+  <!-- age -->
+  <div class="mb-3">
+    <label for="age" class="form-label">Age</label>
+  <input type="number" class="form-control" id="age">
+  </div>
+  <!-- gender -->
+  <div class="mb-3">
+    <label for="gender" class="form-label">Gender</label>
+  <input type="text" class="form-control" id="gender">
+  </div>
+  <!-- email -->
+  <div class="mb-3">
+    <label for="eMail" class="form-label">E-mail</label>
+  <input type="text" class="form-control" id="eMail">
+  </div>
+  <!-- Role -->
+  <div class="mb-3">
+    <label for="role" class="form-label">Role</label>
+  <input type="text" class="form-control" id="role">
+  </div>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Users Table -->
       <table class="table">
         <thead>
           <tr>
@@ -91,8 +151,27 @@ export default {
     this.$store.dispatch('fetchUsers'),
     this.$store.dispatch('fetchProducts')
   },
+  
+  // products add 
+
+  // methods: {
+  //   createProductPayload() {
+  //     return {
+  //       prodName: "",
+  //       quantity: "",
+  //       amount: "",
+  //       category: "",
+  //       prodUrl: ""
+  //     };
+  //   }
+  // const message = await this.addUser(newUser);
+  // console.log(message);
+  // },
+
 
 };
+ 
+  
 </script>
 
 <style>

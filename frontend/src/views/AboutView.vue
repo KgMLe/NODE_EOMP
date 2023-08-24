@@ -88,7 +88,9 @@ img[alt= "gym"]{
 
 /* make the pic radius */
 img[alt= "category"]{
-  border-radius: 50;
+  border-radius: 50%;
+  width: 20rem !important;
+  border: 3px solid #DD1155;
 }
 
 

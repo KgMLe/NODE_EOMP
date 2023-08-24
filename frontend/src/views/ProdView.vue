@@ -12,15 +12,15 @@
             <div class="mt-4 d-flex justify-content-between">
               <div>
                 <h4 class="text-sm text-dark">
-                  <!-- this should give us the option to view ore details -->
+                  <!-- this should give us the option to view more details -->
                   <a :href="product.href">
                     <span aria-hidden="true" class="position-absolute inset-0"></span>
                     {{ product.prodName }}
                   </a>
                 </h4>
-                <p class="mt-1 text-sm text-muted">{{ product.category}}</p>
+                <p class="mt-1 text-sm text-muted">{{ product.Category}}</p>
               </div>
-              <p class="text-sm font-weight-medium text-dark">{{ product.amount }}</p>
+              <p class="text-sm font-weight-medium text-dark">R:{{ product.amount }}</p>
             </div>
           </div>
         </div>
@@ -33,9 +33,10 @@
 
 <script>
 import SpinnerComp from '@/components/SpinNer.vue'
+
 export default {
        components:{
-        SpinnerComp
+        SpinnerComp,
        },
        computed:{
         products(){
@@ -64,5 +65,9 @@ background-size: cover;
   font-weight: bold;
   color: black;
 }
+
+
+
+
 
 </style>

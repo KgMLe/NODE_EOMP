@@ -2,7 +2,13 @@
   <div>
     <div id="landingpage" class="row">
       <!-- LANDING PAGE IMAGE  -->
-    <p id="landingtext">Got body goals? <br> We got you</p>
+      <div class="blockquote-wrapper">
+  <div class="blockquote">
+    <h1>
+      Got body goals? <br> We got you
+     </h1>
+  </div>
+</div>
     <button> Large button</button>
   </div>
   <div class="container">
@@ -29,19 +35,10 @@
 
 <style scoped>
 #landingpage{
-background-image: url("https://www.health.com/thmb/hH7gFOHHW6uWj_BeiWQQlRZsOcM=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Health-Stocksy_txp21856698W5h300_Medium_4329119-6861a908fb5346bea17dd46915bfe3c4.jpg");
+background-image: url("https://i.postimg.cc/k4TKqw6x/106446251-1584376411229twenty20-bb5f869c-3773-4e13-bfbb-18416f5b58bf.jpg");
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-}
-
-#landingtext{
-  font-size: 7rem;
-  padding: 10%;
-  color: #fff;
-  text-align: center;
-  font-weight: bolder;
-
 }
 
 #welcome{
@@ -50,5 +47,43 @@ background-size: cover;
   text-align: center;
 }
 
+img[alt= "category"]{
+    border-radius: 50%;
+}
+
+/* Blockquote main style */
+.blockquote {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: #44A1A0;
+    padding: 7%;
+    width: 100%;
+    max-width: 500px;
+    z-index: 1;
+    margin: 80px auto;
+    align-self: center;
+    border-top: solid 3px;
+    border-bottom: solid 3px;
+}
+
+/* Blockquote header */
+.blockquote h1 {
+    
+    color: black;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+}
+
+
+/* increase header size after 600px */
+@media all and (min-width: 600px) {
+    .blockquote h1 {
+        font-size: 60px;
+   }
+
+}
 
 </style>
