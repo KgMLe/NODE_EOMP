@@ -12,7 +12,7 @@
             <div class="mt-4 d-flex justify-content-between">
               <div>
                 <h4 class="text-sm text-dark">
-                  <!-- this should give us the option to view ore details -->
+                  <!-- this should give us the option to view more details -->
                   <a :href="product.href">
                     <span aria-hidden="true" class="position-absolute inset-0"></span>
                     {{ product.prodName }}
@@ -28,19 +28,15 @@
       <div v-else class="row justify-content-center">
         <SpinnerComp/>
     </div>
-    <div>
-      <SingleProd/>
-    </div>
     </div>
 </template>
 
 <script>
 import SpinnerComp from '@/components/SpinNer.vue'
-import SingleProd from './SingleProd.vue'
+
 export default {
        components:{
         SpinnerComp,
-        SingleProd
        },
        computed:{
         products(){
