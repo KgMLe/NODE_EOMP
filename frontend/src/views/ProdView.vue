@@ -1,42 +1,55 @@
 <template>
   <div class="container-fluid">
-<div class="row" id="prodpage">
-<p id="prodintro">SHOP           OUR             PRODUCTS</p>
-</div>
-      <div class="mt-4 row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" style= "padding:3%" v-if="products">
-        <div v-for="product in products" :key= "product.prodID" class="col">
-          <div class="group position-relative">
-            <div class="ratio ratio-1x1 w-100 overflow-hidden rounded-md bg-secondary group-hover-opacity-75">
-              <img :src="product.prodUrl" :alt="product.imageAlt" class="h-100 w-100 object-cover" />
-            </div>
-            <div class="mt-4 d-flex justify-content-between">
-              <div>
-                <h4 class="text-sm text-dark">
-                  <!-- this should give us the option to view more details -->
-                  <a :href="product.href">
-                    <span aria-hidden="true" class="position-absolute inset-0"></span>
-                    {{ product.prodName }}
-                  </a>
-                </h4>
-                <p class="mt-1 text-sm text-muted">{{ product.Category}}</p>
-              </div>
-              <p class="text-sm font-weight-medium text-dark">R:{{ product.amount }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div v-else class="row justify-content-center">
-        <SpinnerComp/>
-    </div>
-    </div>
-</template>
 
+
+ <div class="products" v-if="products">
+    <div class="card" v-for="product in products" :key= "product.prodID">
+      <div class="image-holder">
+          <img :src="product.prodUrl" :alt="product.imageAlt">
+      </div>
+      <div class="info">
+        <div class="container text-center">
+  <div class="row align-items-start">
+    <!-- <div class="col"> -->
+      <strong>{{ product.prodName }}</strong>
+      <br>
+      <span class="price">${{ product.amount }}</span>
+      <br>
+      <div class="button-contain">
+          <button>
+            view
+          </button>
+        </div>
+    <!-- </div> -->
+    <!-- <div class="col"> -->
+     
+    <!-- </div> -->
+  </div>
+</div>
+ 
+ 
+ 
+        
+      </div>
+</div>
+ </div>
+</div>
+</template>
+<!-- 
+
+
+
+
+ -->
+<!-- <div v-else class="row justify-content-center">
+  <SpinnerComp/>
+</div> -->
 <script>
-import SpinnerComp from '@/components/SpinNer.vue'
+// import SpinnerComp from '@/components/SpinNer.vue'
 
 export default {
        components:{
-        SpinnerComp,
+        // SpinnerComp,
        },
        computed:{
         products(){
@@ -50,6 +63,10 @@ export default {
 </script>
 
 <style scoped>
+:root{
+  ---color: #0B0B0B;
+}
+
 #prodpage{
 background-image: url("https://i.postimg.cc/MTHNk2k4/best-home-workout-equipment.jpg");
 background-position: center;
@@ -63,11 +80,81 @@ background-size: cover;
   padding: 3%;
   font-size: 3rem;
   font-weight: bold;
-  color: black;
+  color: var(---color);
+}
+.products{
+  display:grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-around;
+
+}
+
+.card{
+  width: 18rem;
+  margin: 5px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.image-holder {
+  text-align: center;
+}
+.image-holder img{
+  width: 250px;
+    height: 250px;
+    object-fit: contain;
+    aspect-ratio: 3/4;
+}
+
+.price{
+  font-size: 14px;
+  font-weight: 800;
+  float: right;
+  color: var(---color);
+  margin: 10px;
+}
+
+.button-contain{
+text-align: left;
+bottom: 0;
+}
+
+.button-contain button{
+  background-color: var(---color);
+  border: 1px solid #0B0B0B;
+  padding: 5px;
+  width: 50%;
+  margin: 3px;
+}
+ .button-contain button:hover{
+  background-color:#0B0B0B;
+  color: white;
+  box-sizing: 2px 2px 20px black;
+}
+
+strong{
+  font-size: 15px;
+}
+
+.bottom{
+  position: relative;
+  bottom: 0;
+}
+.row{
+  text-align: left;
 }
 
 
+@media screen and (max-width: 700px) {
+  .products {
+    grid-template-columns: auto;
+  }
+}
 
-
-
+@media screen and (max-width: 300px) {
+  .products {
+    grid-template-columns: auto;
+  }
+ 
+}
 </style>

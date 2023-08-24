@@ -5,7 +5,7 @@
       <main>
         <router-view/> <!--this shows our content-->
       </main>
-     <FooTer/>
+     <!-- <FooTer/> -->
     </div>
   
   </template>
@@ -13,11 +13,11 @@
   
   <script>
   import NavBar from '@/components/NavBar.vue'
-  import FooTer from '@/components/FooTer.vue'
+  // import FooTer from '@/components/FooTer.vue'
   export default {
     components:{
       NavBar,
-      FooTer
+      // FooTer
     }
   }
   </script>
@@ -33,7 +33,7 @@
     background-color: rgb(249, 249, 249);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto minmax(0vh, 1fr) auto;
+    grid-template-rows: auto minmax(1vh, 1fr) auto;
   }
 
   #app > *{
