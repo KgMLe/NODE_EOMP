@@ -22,43 +22,43 @@
   <!-- Profile image  -->
   <div class="mb-3">
   <label for="userImage" class="form-label">Image Url</label>
-  <input type="text" class="form-control" id="userImage">
+  <input type="text" class="form-control" id="userImage" v-model="addUser.userProfile">
   </div>
   <!-- first name -->
   <div class="mb-3">
   <label for="firstName" class="form-label">First Name</label>
-  <input type="text" class="form-control" id="firstName">
+  <input type="text" class="form-control" id="firstName" v-model="addUser.firstName">
   </div>
   <!-- last name -->
   <div class="mb-3">
     <label for="lastName" class="form-label">Last Name</label>
-  <input type="text" class="form-control" id="lastName">
+  <input type="text" class="form-control" id="lastName" v-model="addUser.lastName">
   </div>
   <!-- age -->
   <div class="mb-3">
     <label for="age" class="form-label">Age</label>
-  <input type="number" class="form-control" id="age">
+  <input type="number" class="form-control" id="age" v-model="addUser.userAge">
   </div>
   <!-- gender -->
   <div class="mb-3">
     <label for="gender" class="form-label">Gender</label>
-  <input type="text" class="form-control" id="gender">
+  <input type="text" class="form-control" id="gender" v-model="addUser.Gender">
   </div>
   <!-- email -->
   <div class="mb-3">
     <label for="eMail" class="form-label">E-mail</label>
-  <input type="text" class="form-control" id="eMail">
+  <input type="text" class="form-control" id="eMail" v-model="addUser.emailAdd">
   </div>
   <!-- Role -->
   <div class="mb-3">
     <label for="role" class="form-label">Role</label>
-  <input type="text" class="form-control" id="role">
+  <input type="text" class="form-control" id="role" v-model="addUser.userRole">
   </div>
   </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- for adding the user -->
+        <button type="button" class="btn btn-primary" @submit.prevent="addUser">Save changes</button>
       </div>
     </div>
   </div>
@@ -144,29 +144,34 @@ export default {
       return this.$store.state.users;
     },
     products(){
-            return this.$store.state.products
+    return this.$store.state.products
     },
   },
   mounted() {
     this.$store.dispatch('fetchUsers'),
     this.$store.dispatch('fetchProducts')
+    
   },
   
   // products add 
-
-  // methods: {
-  //   createProductPayload() {
-  //     return {
-  //       prodName: "",
-  //       quantity: "",
-  //       amount: "",
-  //       category: "",
-  //       prodUrl: ""
-  //     };
-  //   }
-  // const message = await this.addUser(newUser);
-  // console.log(message);
-  // },
+  data() {
+    return {
+      addUser: {
+      prodName: "",
+      quantity: "",
+      amount: "",
+      category: "",
+      prodUrl: ""
+      }
+   
+    };
+  },
+ 
+  methods: {
+   regUser(){
+    this.$store.dispatch('addUser', this.addUser)
+   }
+}
 
 
 };
@@ -179,7 +184,8 @@ export default {
     background-image: url("https://i.postimg.cc/Xv4TxfyJ/business-man-looking-data-chart-stock-market-analysis-company-growth-laptop-entrepreneur-looking-glo.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    height: 100vh;
 }
 
 #admin{
@@ -198,4 +204,3 @@ export default {
 }
 
 </style>
-  

@@ -35,10 +35,11 @@
 
 <style scoped>
 #landingpage{
-background-image: url("https://i.postimg.cc/k4TKqw6x/106446251-1584376411229twenty20-bb5f869c-3773-4e13-bfbb-18416f5b58bf.jpg");
-background-position: center;
-background-repeat: no-repeat;
+background-image: url("https://i.postimg.cc/htKrDhpB/875524-Men-Barbell-Muscle-Gym-Workout-Human-back.jpg");
+/* background-position: center; */
+/* background-repeat: no-repeat; */
 background-size: cover;
+background-attachment: fixed;
 }
 
 #welcome{
@@ -70,7 +71,7 @@ img[alt= "category"]{
 /* Blockquote header */
 .blockquote h1 {
     
-    color: black;
+    color: white;
     font-size: 40px;
     font-weight: 800;
     line-height: 1;
