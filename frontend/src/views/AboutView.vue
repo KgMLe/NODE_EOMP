@@ -2,11 +2,11 @@
  <div class="container-fluid" style="padding:3% ;">
   <div class="container text-center">
   <div class="row align-items-start">
-    <div class="col">
+    <div class="col" id="intro">
       <h3>
           Discover the Future of Home Fitness with Us!
         </h3>
-
+<br>
         <p class="description">
           At Fit Space Solutions, we understand that space shouldn't limit your commitment to a healthier lifestyle. That's why we've meticulously curated a selection of home gym equipment that caters to both expansive and cozy living spaces. Whether you have a spacious dedicated room or a compact corner, we have the perfect solutions to transform your space into a fitness sanctuary.
         </p>
@@ -19,15 +19,16 @@
   <!-- oooooooooooo -->
 
     <div class="row">
-      <h3 class="range text-center" style="margin: 50px;">Our Product Range:</h3>
+      <h3  style="margin: 50px;">Our Product Range:</h3>
 <!-- PRODUCTS CATEGORIES -->
       <div class="row-category">
 
         <!-- 1st col -->
         <div class="col">
-          <div class="image-holder text-center"  >
+          <div class="image-holder text-justify"  >
             <img src="https://i.postimg.cc/y6cG1mvN/WalkingPad.jpg" alt="category">
           </div>
+          <br>
           <h3>
             Cardio
           </h3>
@@ -35,9 +36,10 @@
         </div>
         <!-- 2nd col -->
         <div class="col">
-          <div class="image-holder  text-center">
+          <div class="image-holder  text-justify">
             <img src="https://i.postimg.cc/bvLtW48K/image.jpg" alt="category" >
           </div>
+          <br>
           <h3>
             Weights
           </h3>
@@ -45,9 +47,10 @@
         </div>
         <!-- 3rd col -->
         <div class="col">
-          <div class="image-holder  text-center">
+          <div class="image-holder  text-justify">
             <img src="https://i.postimg.cc/PJT4G9RZ/Best-Home-Gym-Equipment-2020.jpg" alt="category" >
           </div>
+          <br>
           <h3 >
             Gym Accessories
           </h3>
@@ -56,8 +59,7 @@
       </div>
     </div>
     <div class="row" style="padding-top: 3%;">
-      <p>
-        We believe that fitness knows no boundaries, and neither should your living space. Explore our range of products that embrace versatility, functionality, and space-conscious designs. With Fit Space, achieving your fitness goals has never been this convenient or accessible. Transform your home, transform your life and start your fitness journey with us today!
+      <p> <b> We believe that fitness knows no boundaries, and neither should your living space. Explore our range of products that embrace versatility, functionality, and space-conscious designs. With Fit Space, achieving your fitness goals has never been this convenient or accessible. Transform your home, transform your life and start your fitness journey with us today! </b>
       </p> 
 
    
@@ -74,6 +76,16 @@
 </script>
 
 <style>
+
+h3{
+  font-weight: bold;
+}
+
+#intro{
+  align-items: start;
+  text-align: justify;
+  padding-right: 7%;
+}
  
 #name{
   font-size: 7rem;
@@ -97,9 +109,9 @@ img[alt= "gym"]{
 }
 /* make the pic radius */
 img[alt= "category"]{
-  /* border-radius: 50%; */
+  border-radius: 50%;
   width: 20rem;
-  /* border: 3px solid #DD1155; */
+  border: 3px solid #DD1155;
 }
 
 .image-holder img{

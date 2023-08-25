@@ -9,7 +9,7 @@
  Add User
 </button>
 
-<!-- Modal -->
+<!-- Modal Users -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -49,6 +49,12 @@
     <label for="eMail" class="form-label">E-mail</label>
   <input type="text" class="form-control" id="eMail" v-model="addUser.emailAdd">
   </div>
+  <!-- password -->
+  <div class="mb-3">
+    <label for="inputPassword5" class="form-label">Password</label>
+<input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" v-model="addUser.userPass">
+  </div>
+ 
   <!-- Role -->
   <div class="mb-3">
     <label for="role" class="form-label">Role</label>
@@ -96,7 +102,8 @@
     </div>
       </table>
     </div>
-    
+
+    <!-- products -->
     <div class="row" id="productsec">
       <p id="admin">Product<br>Administration</p>
     </div>
@@ -106,20 +113,19 @@
           <tr>
             <th scope="col">prodID</th>
             <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Amount</th>
             <th scope="col">Category</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Quantity</th>
             <th scope="col">Prod Pic</th>
           </tr>
         </thead>
         <tbody v-if="products">
           <tr v-for="product in products" :key="product.prodID">
             <th scope="row">{{ product.prodID }}</th>
-            <td>{{ product.prodID }}</td>
-            <td>{{ product.prodName }}</td>
-            <td>{{ product.quantity }}</td>
-            <td>{{ product.amount }}</td>
+            <td>{{ product.prodName }}</td>           
             <td>{{ product.Category }}</td>
+            <td>{{ product.amount }}</td>
+            <td>{{ product.quantity }}</td>
             <td>{{ product.prodUrl }}</td>
             <td><button class="btn">Edit</button></td>
             <td><button class="btn">Delete</button></td>
@@ -129,6 +135,53 @@
         <SpinnerComp/>
     </div>
       </table>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+              Add Product
+      </button>
+      <!-- add product modal -->
+      <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Product</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    <form >
+  <!-- Profile image  -->
+  <div class="mb-3">
+  <label for="prodImage" class="form-label">Image Url</label>
+  <input type="text" class="form-control" id="userImage" v-model="addProd.prodUrl">
+  </div>
+  <!-- name -->
+  <div class="mb-3">
+  <label for="prodName" class="form-label">Product Name</label>
+  <input type="text" class="form-control" id="prodName" v-model="addProd.prodName">
+  </div>
+  <!-- category -->
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+  <input type="text" class="form-control" id="category" v-model="addProd.Category">
+  </div>
+  <!-- amount -->
+  <div class="mb-3">
+    <label for="amount" class="form-label">Amount</label>
+  <input type="number" class="form-control" id="amount" v-model="addProd.amount">
+  </div>
+   <!-- Quantity  -->
+   <div class="mb-3">
+  <label for="quantity" class="form-label">Quantity</label>
+  <input type="text" class="form-control" id="quantity" v-model="addProd.quantity">
+  </div>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <!-- for adding the user -->
+        <button type="button" class="btn btn-primary" @submit.prevent="addProd">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </template>
@@ -156,20 +209,36 @@ export default {
   // products add 
   data() {
     return {
-      addUser: {
+      addProd: {
       prodName: "",
       quantity: "",
       amount: "",
-      category: "",
+      Category: "",
       prodUrl: ""
+      },
+
+      addUser: {
+       userID : "",
+       firstName: "",
+       lastName: "",
+       userAge: "",
+       Gender: "",
+       userRole: "",
+       emailAdd: "",
+       userPass: "",
+       userProfile: ""
       }
    
     };
+
   },
  
   methods: {
    regUser(){
     this.$store.dispatch('addUser', this.addUser)
+   },
+   newProd (){
+    this.$store.dispatch('addProd', this.addProd)
    }
 }
 
@@ -181,11 +250,10 @@ export default {
 
 <style>
 #adminsec{
-    background-image: url("https://i.postimg.cc/Xv4TxfyJ/business-man-looking-data-chart-stock-market-analysis-company-growth-laptop-entrepreneur-looking-glo.jpg");
+    background-image: url("https://freerangestock.com/sample/120943/a-person-typing-on-modern-laptop-with-cookies.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
-    height: 100vh;
+    background-size: cover;
 }
 
 #admin{
@@ -201,6 +269,16 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.btn{
+  background-color: #44A1A0;
+  color: white;
+}
+
+.btn:hover{
+  background-color: black;
+  color: #44A1A0;
 }
 
 </style>

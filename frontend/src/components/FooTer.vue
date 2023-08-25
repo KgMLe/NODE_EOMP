@@ -43,69 +43,51 @@
         <!-- Grid column -->
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
-          <h6 class="text-uppercase fw-bold mb-4">
+          <!-- <h6 class="text-uppercase fw-bold mb-4">
             <i class="fas fa-gem me-3"></i>Fit Space
           </h6>
           <p>
             Here you can use rows and columns to organize your footer content. Lorem ipsum
             dolor sit amet, consectetur adipisicing elit.
-          </p>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Products
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Angular</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">React</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Vue</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Laravel</a>
-          </p>
+          </p> -->
+          <img src="https://i.postimg.cc/j2WkJdBS/FIT-SPACE-removebg-preview.png" alt="logo">
         </div>
         <!-- Grid column -->
 
         <!-- Grid column -->
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
+          <!-- <h6 class="text-uppercase fw-bold mb-4">
             Useful links
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Pricing</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Settings</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Orders</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Help</a>
-          </p>
+          </h6> -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+       <li class="nav-item">
+             <router-link class="nav-link" to="/">Home</router-link>
+             </li>
+             <li class="nav-item">
+               <router-link class="nav-link" to="/about">About</router-link>
+             </li>
+             <li class="nav-item">
+               <router-link class="nav-link" to="/products">Products</router-link>
+             </li>
+             <li class="nav-item">
+               <router-link class="nav-link" to="/admin">Admin</router-link>
+             </li>
+     </ul>
         </div>
         <!-- Grid column -->
 
         <!-- Grid column -->
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <!-- <h6 class="text-uppercase fw-bold mb-4">Contact</h6> -->
+          <p><i class="fas fa-home me-3"></i>Landsdowne, Cape Town, South Africa</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            info@example.com
+            fitspace@solutions.co.z
           </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          <p><i class="fas fa-phone me-3"></i> +2721 887 231</p>
+          <p><i class="fas fa-print me-3"></i> +2721 786 0978</p>
         </div>
         <!-- Grid column -->
       </div>
@@ -117,7 +99,7 @@
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2023 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Fit Space Solutions</a>
+    <a class="text-reset fw-bold" >Fit Space Solutions</a>
   </div>
   <!-- Copyright -->
 </footer>
@@ -132,7 +114,8 @@
 </script>
 
 <style >
-footer{
-  text-align: center;
+img[alt= "logo"]{
+    width: 12rem;
+    padding-left: 10px;
 }
 </style>
