@@ -1,6 +1,54 @@
 <template>
   <div class="container-fluid">
+<div class="row" id="prodpage">
+<div id="prodintro">
+  SHOP OUR PRODUCTS
+</div>
+</div>
+<div class="container text-center" style="padding-top: 3%;">
+  <div class="row">
+    <div class="col">
+      <!-- sort by name and prize -->
+      <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" >
+            Sort By:
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+            <li><button class="dropdown-item" type="button" >A-Z</button></li>
+          <li><button class="dropdown-item" type="button" >Price</button></li>
+          
+          </ul>
+     </div>
+    </div>
+    <div class="col">
+      <!-- view by category -->
+    <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" >
+            View By Category:
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+            <li><button class="dropdown-item" type="button" @click="selectedCategory = 'Cardio'">Cardio</button></li>
+          <li><button class="dropdown-item" type="button" @click="selectedCategory = 'Weights'">Weights</button></li>
+          <li><button class="dropdown-item" type="button" @click="selectedCategory = 'Accessories'">Accessories</button></li>
+          </ul>
+     </div>
+    </div>
+    <div class="col">
+        <!-- search -->
+        <form class="d-flex" role="search" @submit.prevent="search">
+        <input class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search" v-model="searchQuery">
+        <button class="btn" type="submit">Search</button>  
+        </form>
+    </div>
+  </div>
+</div>
 
+<div class="row" style="padding: 3%;">
+
+</div>
+<div>
+  
+</div>
 
  <div class="products" v-if="products">
     <div class="card" v-for="product in products" :key= "product.prodID">
@@ -15,51 +63,65 @@
       <br>
       <span class="price">${{ product.amount }}</span>
       <br>
-      <div class="button-contain">
-          <button>
-            view
+        <div class="button-contain">
+          <router-link :to="{ name: 'singleProd', params: { id: product.prodID }, query: {
+              prodName: product.prodName,
+              catergory: product.category,
+              prodURL: product.prodURL,
+              amount: product.amount,
+            }}"
+        >
+        <button>
+            View Details
           </button>
+        </router-link>
         </div>
-    <!-- </div> -->
-    <!-- <div class="col"> -->
-     
-    <!-- </div> -->
   </div>
-</div>
- 
- 
- 
-        
-      </div>
 </div>
  </div>
 </div>
-</template>
-<!-- 
-
-
-
-
- -->
-<!-- <div v-else class="row justify-content-center">
+ </div>
+ <div v-else class="row justify-content-center">
   <SpinnerComp/>
-</div> -->
+</div>
+</div>
+</template>
 <script>
-// import SpinnerComp from '@/components/SpinNer.vue'
+import SpinnerComp from '@/components/SpinNer.vue'
 
 export default {
        components:{
-        // SpinnerComp,
+        SpinnerComp,
        },
-       computed:{
+      computed:{
         products(){
             return this.$store.state.products
-        }
+        },
+        // search
+        filteredProducts() {
+      if (this.searchQuery === '') {
+        return this.products;
+      }
+
+      return this.products.filter((product) => {
+        return (
+          product.prodName.includes(this.searchQuery) ||
+          product.amount.includes(this.searchQuery) ||
+          product.category.includes(this.searchQuery)
+
+
+        );
+      });
+    },
+
+    
        },
        mounted(){
         this.$store.dispatch('fetchProducts')
        } 
        }
+
+
 </script>
 
 <style scoped>
@@ -80,7 +142,7 @@ background-size: cover;
   padding: 3%;
   font-size: 3rem;
   font-weight: bold;
-  color: var(---color);
+  color: white;
 }
 .products{
   display:grid;
@@ -130,6 +192,16 @@ bottom: 0;
   background-color:#0B0B0B;
   color: white;
   box-sizing: 2px 2px 20px black;
+}
+
+.btn{
+  background-color: #44A1A0;
+  color: white;
+}
+
+.btn:hover{
+  background-color: black;
+  color: #44A1A0;
 }
 
 strong{

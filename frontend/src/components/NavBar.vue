@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
  <div class="container-fluid">
    
-   <a class="navbar-brand" href="#" ><img src="https://i.pinimg.com/originals/e9/e2/78/e9e2787d0cb55d570fe1c76843506759.jpg" alt="logo"></a>
+   <a class="navbar-brand" href="#" ><img src="https://i.postimg.cc/ht3jSS96/FIT-SPACE-removebg-preview.png" alt="logo"></a>
    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
      <span class="navbar-toggler-icon"></span>
    </button>
@@ -24,6 +24,9 @@
                <router-link class="nav-link" to="/contact">Contact</router-link>
              </li> -->
      </ul>
+     
+     <router-link to="/products" class="btn">Shop Now</router-link>
+
    </div>
  </div>
 </nav>
@@ -31,6 +34,7 @@
 
 <script>
    export default {
+    
        
    }
 </script>
@@ -39,7 +43,31 @@
 
 img[alt= "logo"]{
     width: 4rem;
+    padding-left: 10px;
 }
 
+button{
+  background-color: var(---color);
+  border: 1px solid #0B0B0B;
+  padding: 5px;
+  width: 50%;
+  margin: 3px;
+  border-radius: 3px;
+}
+ button:hover{
+  background-color:#0B0B0B;
+  color: white;
+  box-sizing: 2px 2px 20px black;
+}
+
+.btn{
+  background-color: #44A1A0;
+  color: white;
+}
+
+.btn:hover{
+  background-color: black;
+  color: #44A1A0;
+}
 
 </style>

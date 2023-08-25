@@ -9,7 +9,7 @@
      </h1>
   </div>
 </div>
-    <button> Large button</button>
+   
   </div>
   <div class="container">
     <div class="row">
@@ -17,6 +17,7 @@
       Welcome to Fit Space Solutions, a premier home gym equipment site, where fitness meets convenience. Explore a wide range of meticulously curated exercise gear designed to transform any space into a personal fitness haven. From compact cardio machines to versatile weights and cutting-edge accessories, we offer everything you need to elevate your workouts and achieve your health goals without leaving the comfort of your home. Browse now and embark on a journey to a fitter, healthier you.
      </h5>
     </div>
+    <router-link to="/about" class="btn">Learn More</router-link>
   </div>
   <div>
     
@@ -35,8 +36,8 @@
 
 <style scoped>
 #landingpage{
-background-image: url("https://i.postimg.cc/htKrDhpB/875524-Men-Barbell-Muscle-Gym-Workout-Human-back.jpg");
-/* background-position: center; */
+background-image: url("https://i.postimg.cc/D0B5XzGJ/Physically-Designate-Workout-Space-Home.jpg");
+background-position: center;
 /* background-repeat: no-repeat; */
 background-size: cover;
 background-attachment: fixed;
@@ -44,8 +45,8 @@ background-attachment: fixed;
 
 #welcome{
   font-weight: bold;
-  padding: 7%;
-  text-align: center;
+  padding: 3%;
+  text-align: justify;
 }
 
 img[alt= "category"]{
@@ -78,6 +79,20 @@ img[alt= "category"]{
     margin: 0;
 }
 
+.container{
+  justify-content: center;
+  padding: 3%;
+
+}
+
+.btn{
+  background-color: #44A1A0;
+  color: white;
+}
+
+.btn:hover{
+  background-color: black;
+}
 
 /* increase header size after 600px */
 @media all and (min-width: 600px) {
