@@ -19,7 +19,7 @@
   <!-- oooooooooooo -->
 
     <div class="row">
-      <h3  style="margin: 50px;">Our Product Range:</h3>
+      <center><h3>Our Product Range:</h3></center>
 <!-- PRODUCTS CATEGORIES -->
       <div class="row-category">
 
@@ -111,7 +111,7 @@ img[alt= "gym"]{
 img[alt= "category"]{
   border-radius: 50%;
   width: 20rem;
-  border: 3px solid #DD1155;
+  border: 3px solid #44A1A0;
 }
 
 .image-holder img{

@@ -8,6 +8,7 @@ export default createStore({
     user: null,
     products: null,
     product: null,
+    selectedCategory: null,
     spinner: false,
     token: null,
     msg: null
@@ -35,6 +36,13 @@ export default createStore({
     setProduct(state, product){
       state.product = product
     },
+    deleteProduct(state, prodID) {
+    state.products = state.products.filter(product => product.id !== prodID);
+    },
+  
+    selectedCategory(state, category){
+      state.selectedCategory = category
+    },
     setSpinner(state, value){
       state.spinner= value
     },
@@ -51,6 +59,25 @@ export default createStore({
       try{
           const {data} = await axios.get(`${eompBackend}products`)
           context.commit("setProducts", data.results )
+      }catch(e){
+        context.commit("setMsg", "An error occured")
+      }
+    },
+    // fetch product
+    async fetchProduct(context, id){
+      try{
+          const {data} = await axios.get(`${eompBackend}product/${id}`)
+          context.commit("setProduct", data.results )
+      }catch(e){
+        context.commit("setMsg", "An error occured")
+      }
+    },
+
+    //fetch categories
+    async fetchCategories(context){
+      try{
+          const {data} = await axios.get(`${eompBackend}categories`)
+          context.commit("selectedCategory", data.results )
       }catch(e){
         context.commit("setMsg", "An error occured")
       }
@@ -80,6 +107,71 @@ export default createStore({
           context.commit("setMsg", "An error occurred while adding the product");
         }
     },
+
+    // deletProduct
+    async deleteProduct(context, id) {
+      try {
+        const response = await axios.delete(`${eompBackend}product/${id}`);
+        const { msg } = response.data;
+  
+        if (msg) {
+          context.commit("setMsg", msg);
+        } else {
+          context.commit("setMsg", "Product deleted successfully");
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error occurred while deleting the product");
+      }
+    },
+  
+    // updateProduct
+    async updateProduct(context, payload) {
+      try {
+        const response = await axios.put(`${eompBackend}product/${payload.id}`, payload);
+        const { msg } = response.data;
+  
+        if (msg) {
+          context.commit("setMsg", msg);
+        } else {
+          context.commit("setMsg", "Product updated successfully");
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error occurred while updating the product");
+      }
+    },
+  
+    // updateUser
+    async updateUser(context, payload) {
+      try {
+        const response = await axios.put(`${eompBackend}user/${payload.id}`, payload);
+        const { msg } = response.data;
+  
+        if (msg) {
+          context.commit("setMsg", msg);
+        } else {
+          context.commit("setMsg", "User updated successfully");
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error occurred while updating the user");
+      }
+    },
+  
+    // deleteUser
+    async deleteUser(context, id) {
+      try {
+        const response = await axios.delete(`${eompBackend}user/${id}`);
+        const { msg } = response.data;
+  
+        if (msg) {
+          context.commit("setMsg", msg);
+        } else {
+          context.commit("setMsg", "User deleted successfully");
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error occurred while deleting the user");
+      }
+    },
+
     // addUser
     async addUser(context, payload) {
       try {
