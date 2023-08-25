@@ -62,7 +62,7 @@
       </div>
       <div class="modal-footer">
         <!-- for adding the user -->
-        <button type="button" class="btn btn-primary" >Save changes</button>
+        <button type="submit" class="btn btn-primary" >Save changes</button>
       </div>
     </div>
   </div>
@@ -82,10 +82,75 @@
     <p>{{ user.userRole }}</p>
     <div class="row">
       <div class="col">
-        <i class="bi bi-pencil"></i>
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editmodal">Edit<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+</svg></button>
       </div>
+      <!-- edit modal -->
+      <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+  <form @submit.prevent="updateUser" >
+  <!-- Profile image  -->
+  <div class="mb-3">
+  <label for="userImage" class="form-label">Image Url</label>
+  <input type="text" class="form-control" id="userImage" v-model="updateUser.userProfile">
+  </div>
+  <!-- first name -->
+  <div class="mb-3">
+  <label for="firstName" class="form-label">First Name</label>
+  <input type="text" class="form-control" id="firstName" v-model="updateUser.firstName">
+  </div>
+  <!-- last name -->
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name</label>
+  <input type="text" class="form-control" id="lastName" v-model="updateUser.lastName">
+  </div>
+  <!-- age -->
+  <div class="mb-3">
+    <label for="age" class="form-label">Age</label>
+  <input type="number" class="form-control" id="age" v-model="updateUser.userAge">
+  </div>
+  <!-- gender -->
+  <div class="mb-3">
+    <label for="gender" class="form-label">Gender</label>
+  <input type="text" class="form-control" id="gender" v-model="updateUser.Gender">
+  </div>
+  <!-- email -->
+  <div class="mb-3">
+    <label for="eMail" class="form-label">E-mail</label>
+  <input type="text" class="form-control" id="eMail" v-model="updateUser.emailAdd">
+  </div>
+  <!-- password -->
+  <div class="mb-3">
+    <label for="inputPassword5" class="form-label">Password</label>
+<input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" v-model="addUser.userPass">
+  </div>
+  <!-- Role -->
+  <div class="mb-3">
+    <label for="role" class="form-label">Role</label>
+  <input type="text" class="form-control" id="role" v-model="addUser.userRole">
+  </div>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <!-- for adding the user -->
+        <button type="submit" class="btn btn-primary" >Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
       <div class="col">
-        <button class="btn"  @click="delUser(user.ID)">Delete</button>
+        <button class="btn"   @click="delUser(user.ID)">Del<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+</svg></button>
       </div>
     </div>
   </div>
@@ -108,6 +173,8 @@
             <th scope="col">Amount</th>
             <th scope="col">Quantity</th>
             <th scope="col">Prod Pic</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Del</th>
             <th></th>
             <th></th>
           </tr>
@@ -120,8 +187,53 @@
             <td>{{ product.amount }}</td>
             <td>{{ product.quantity }}</td>
             <td><img :src="product.prodUrl" :alt="product.imageAlt"></td>
-            <td><button class="btn"><i class="bi bi-pencil"></i></button></td>
-            <td><button class="btn" @click="delProd(product.prodID)">Delete</button></td>
+            <td><button class="btn" data-bs-toggle="modal" data-bs-target="#editProd"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+            </svg></button></td>
+            <div class="modal fade" id="editProd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Product</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    <form @submit.prevent="editProd">
+  <!-- Profile image  -->
+  <div class="mb-3">
+  <label for="prodImage" class="form-label">Image Url</label>
+  <input type="text" class="form-control" id="userImage" v-model="editProd.prodUrl">
+  </div>
+  <!-- name -->
+  <div class="mb-3">
+  <label for="prodName" class="form-label">Product Name</label>
+  <input type="text" class="form-control" id="prodName" v-model="editProd.prodName">
+  </div>
+  <!-- category -->
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+  <input type="text" class="form-control" id="category" v-model="editProd.Category">
+  </div>
+  <!-- amount -->
+  <div class="mb-3">
+    <label for="amount" class="form-label">Amount</label>
+  <input type="number" class="form-control" id="amount" v-model="editProd.amount">
+  </div>
+   <!-- Quantity  -->
+   <div class="mb-3">
+  <label for="quantity" class="form-label">Quantity</label>
+  <input type="text" class="form-control" id="quantity" v-model="editProd.quantity">
+  </div>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <!-- for adding the user -->
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+           <td><button class="btn" @click="delProd(product.prodID)">Delete</button></td>
           </tr>
         </tbody>
         <div v-else class="row justify-content-center">
@@ -185,22 +297,7 @@ export default {
   components: {
         SpinnerComp
        },
-  computed: {
-    users() {
-      return this.$store.state.users;
-    },
-    products(){
-    return this.$store.state.products
-    },
-  },
-  mounted() {
-    this.$store.dispatch('fetchUsers'),
-    this.$store.dispatch('fetchProducts')
-    
-  },
-  
-  // products add 
-  data() {
+   data() {
     return {
       addProd: {
       prodName: "",
@@ -208,14 +305,9 @@ export default {
       amount: "",
       Category: "",
       prodUrl: ""
-      },   
-    };
-  },
- 
-  methods: {
-    async addUser(){
-      try {
-        const payload = {
+      },
+      
+      addUser:{
        userID : "",
        firstName: "",
        lastName: "",
@@ -225,23 +317,38 @@ export default {
        emailAdd: "",
        userPass: "",
        userProfile: ""
-        };
-        
-        await this.$store.dispatch('addUser', payload);
-        alert("New User Added")
-      } catch (error) {
-        this.errorMsg = "An error occurred while adding the user."
-      }
+      }   
+    };
+  },
+  computed: {
+    users() {
+      return this.$store.state.users;
     },
-   newProd (){
-    this.$store.dispatch('addProd', this.addProd)
+    products(){
+    return this.$store.state.products
+    },
+    newProd (){
+   return this.$store.dispatch('addProduct', this.addProd)
    },
+   newUser(){
+    return this.$store.dispatch('addUser', this.addUser)
+   }
+  },
+  mounted() {
+    this.$store.dispatch('fetchUsers'),
+    this.$store.dispatch('fetchProducts')
+    
+  },
+  
+ 
+  methods: { 
+  //  delete
    async delProd(prodID) {
     try {
       await this.$store.dispatch("deleteProduct", prodID);
       alert("Product Deleted")
     } catch (error) {
-      this.errorMsg = "An error occurred while adding the user."
+      this.errorMsg = "An error occurred."
     }
   },
   async delUser(userID) {
@@ -249,10 +356,32 @@ export default {
       await this.$store.dispatch("deleteUser", userID);
       alert("User Deleted")
     } catch (error) {
-      this.errorMsg = "An error occurred while adding the user."
+      this.errorMsg = "An error occurred "
     }
   },
-}
+  // update
+  async updateUser() {
+    try {
+      await this.$store.dispatch('updateUser', this.updatedUser);
+      alert("User Updated")
+    } catch (error) {
+      this.errorMsg = "An error occurred while updating the user."
+    }
+  },
+  async editProd() {
+      try {
+        const response = await this.$store.dispatch('updateProduct', this.updatedProduct);
+        
+        if (response.msg) {
+          alert("Oops something seems wrong")
+        } else {
+          alert("Prodcut Updated")
+        }
+      } catch (error) {
+        this.errorMsg = "An error occurred while updating the user."
+      }
+    },
+  },
 };
  
   
