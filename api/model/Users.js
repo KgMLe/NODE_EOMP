@@ -121,14 +121,14 @@ class Users{
     const query =`
         UPDATE Users
         SET?
-        WHERE userID = ?
+        WHERE userID = ?;
         `
-        db.query(query,[req.body, req.params],
+        db.query(query,[data, req.params.id],
             (err) => {
                 if(err) throw err
                 res.json({
                     status: res.statusCode,
-                    msg:"The user record was updated."
+                    msg:"User information updated"
                 })
             })
     }
