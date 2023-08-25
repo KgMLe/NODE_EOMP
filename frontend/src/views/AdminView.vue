@@ -1,9 +1,8 @@
 <template>
-  <div class="container-fluid">
-    <div class="row" id="adminsec">
-      <p id="admin">User<br>Administration</p>
-    </div>
+  <div class="container-fluid" >
+  
     <div class="row" style="padding: 3%;">
+      <center><h1>Users</h1></center>
       <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
  Add User
@@ -18,7 +17,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-    <form >
+  <form @submit.prevent="addUser">
   <!-- Profile image  -->
   <div class="mb-3">
   <label for="userImage" class="form-label">Image Url</label>
@@ -54,7 +53,6 @@
     <label for="inputPassword5" class="form-label">Password</label>
 <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" v-model="addUser.userPass">
   </div>
- 
   <!-- Role -->
   <div class="mb-3">
     <label for="role" class="form-label">Role</label>
@@ -64,49 +62,42 @@
       </div>
       <div class="modal-footer">
         <!-- for adding the user -->
-        <button type="button" class="btn btn-primary" @submit.prevent="addUser">Save changes</button>
+        <button type="button" class="btn btn-primary" >Save changes</button>
       </div>
     </div>
   </div>
 </div>
-<!-- Users Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">userID</th>
-            <th scope="col">Profile</th>
-            <th scope="col">Firstname</th>
-            <th scope="col">Lastname</th>
-            <th scope="col">Age</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-          </tr>
-        </thead>
-        <tbody v-if="users">
-          <tr v-for="user in users" :key="user.userID">
-            <th scope="row">{{ user.userID }}</th>
-            <td>{{ user.profile }}</td>
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
-            <td>{{ user.userAge }}</td>
-            <td>{{ user.gender }}</td>
-            <td>{{ user.emailAdd }}</td>
-            <td>{{ user.userRole }}</td>
-            <td><button class="btn">Edit</button></td>
-            <td><button class="btn">Delete</button></td>
-          </tr>
-        </tbody>
-        <div v-else class="justify-content-center">
-        <SpinnerComp/>
+<!-- user cards -->
+<div class="card-container" v-if="users">
+  <div class="card" v-for="user in users" :key="user.userID">
+    <p><span class="id">{{ user.userID }}</span></p>
+    <div class="profile-">
+      <img :src="user.userProfile">
     </div>
-      </table>
+  <div class="card-body">
+    <h5 class="card-title">{{ user.firstName }} <br>{{ user.lastName }}</h5>
+    <p>{{ user.userAge }}</p>
+    <p>{{ user.Gender }}</p>
+    <p>{{ user.emailAdd }}</p>
+    <p>{{ user.userRole }}</p>
+    <div class="row">
+      <div class="col">
+        <i class="bi bi-pencil"></i>
+      </div>
+      <div class="col">
+        <button class="btn"  @click="delUser(user.ID)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div v-else class="justify-content-center">
+        <SpinnerComp/>
+</div>
     </div>
 
     <!-- products -->
-    <div class="row" id="productsec">
-      <p id="admin">Product<br>Administration</p>
-    </div>
+  <center><h1>Products</h1></center>
     <div class="row" style="padding: 3%;">
       <table class="table">
         <thead>
@@ -117,18 +108,20 @@
             <th scope="col">Amount</th>
             <th scope="col">Quantity</th>
             <th scope="col">Prod Pic</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody v-if="products">
           <tr v-for="product in products" :key="product.prodID">
-            <th scope="row">{{ product.prodID }}</th>
+            <th>{{ product.prodID }}</th>
             <td>{{ product.prodName }}</td>           
             <td>{{ product.Category }}</td>
             <td>{{ product.amount }}</td>
             <td>{{ product.quantity }}</td>
-            <td>{{ product.prodUrl }}</td>
-            <td><button class="btn">Edit</button></td>
-            <td><button class="btn">Delete</button></td>
+            <td><img :src="product.prodUrl" :alt="product.imageAlt"></td>
+            <td><button class="btn"><i class="bi bi-pencil"></i></button></td>
+            <td><button class="btn" @click="delProd(product.prodID)">Delete</button></td>
           </tr>
         </tbody>
         <div v-else class="row justify-content-center">
@@ -147,7 +140,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-    <form >
+    <form @submit.prevent="addProd">
   <!-- Profile image  -->
   <div class="mb-3">
   <label for="prodImage" class="form-label">Image Url</label>
@@ -177,7 +170,7 @@
       </div>
       <div class="modal-footer">
         <!-- for adding the user -->
-        <button type="button" class="btn btn-primary" @submit.prevent="addProd">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -215,9 +208,14 @@ export default {
       amount: "",
       Category: "",
       prodUrl: ""
-      },
-
-      addUser: {
+      },   
+    };
+  },
+ 
+  methods: {
+    async addUser(){
+      try {
+        const payload = {
        userID : "",
        firstName: "",
        lastName: "",
@@ -227,28 +225,65 @@ export default {
        emailAdd: "",
        userPass: "",
        userProfile: ""
+        };
+        
+        await this.$store.dispatch('addUser', payload);
+        alert("New User Added")
+      } catch (error) {
+        this.errorMsg = "An error occurred while adding the user."
       }
-   
-    };
-
-  },
- 
-  methods: {
-   regUser(){
-    this.$store.dispatch('addUser', this.addUser)
-   },
+    },
    newProd (){
     this.$store.dispatch('addProd', this.addProd)
-   }
+   },
+   async delProd(prodID) {
+    try {
+      await this.$store.dispatch("deleteProduct", prodID);
+      alert("Product Deleted")
+    } catch (error) {
+      this.errorMsg = "An error occurred while adding the user."
+    }
+  },
+  async delUser(userID) {
+    try {
+      await this.$store.dispatch("deleteUser", userID);
+      alert("User Deleted")
+    } catch (error) {
+      this.errorMsg = "An error occurred while adding the user."
+    }
+  },
 }
-
-
 };
  
   
 </script>
 
 <style>
+.id{
+  color: #44A1A0;
+  font-weight: 800;
+}
+ .card-container{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: space-around;
+ }
+ .card-container .card{
+text-align: center;
+width: 200px;
+font-size: 10px;
+margin: 10px;
+ }
+ 
+ .card-container .card img{
+  text-align: center;
+  width:80px;
+ }
+ tbody img{
+  width:70px;
+  border: 1px solid white;
+  border-radius: 5px;
+ }
 #adminsec{
     background-image: url("https://freerangestock.com/sample/120943/a-person-typing-on-modern-laptop-with-cookies.jpg");
     background-position: center;
@@ -274,6 +309,7 @@ export default {
 .btn{
   background-color: #44A1A0;
   color: white;
+  font-size: 10px;
 }
 
 .btn:hover{
@@ -281,9 +317,33 @@ export default {
   color: #44A1A0;
 }
  
+.col i{
+  background-color: #44A1A0;
+  padding: 10px;
+  color: white;
+  font-weight: 900;
+  border: 1px solid #44A1A0;
+  border-radius: 10px;
+  width: 10%;
+}
   @media screen and (max-width: 700px) {
  body{
   font-size: 10px;
  }
+ .card-container{
+  grid-template-columns: auto auto;
+  
+ }
 }
+@media screen and (max-width: 300px) {
+ body{
+  font-size: 10px;
+ }
+ .card-container{
+  grid-template-columns: auto;
+  
+ }
+}
+
+ 
 </style>

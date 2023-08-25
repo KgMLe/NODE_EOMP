@@ -103,5 +103,12 @@ img[alt= "category"]{
    }
 
 }
-
+@media screen and (max-width: 700px){
+  h1{
+    font-size: 10px;
+  }
+  h5{
+    font-size: 10px;
+  }
+}
 </style>

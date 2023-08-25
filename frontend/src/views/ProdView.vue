@@ -11,7 +11,7 @@
         <!-- search -->
         <form class="d-flex" role="search" @submit.prevent="search">
         <input class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search" v-model="searchQuery">
-        <button class="btn" type="submit">Search</button>  
+        <button class="btn" type="submit" @click="searchProducts">Search</button>  
         </form>
     </div>
   </div>
@@ -23,9 +23,9 @@
             Sort By:
           </button>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-            <li><button class="dropdown-item" type="button" >A-Z</button></li>
-          <li><button class="dropdown-item" type="button" >Price</button></li>
-          
+            <li><button class="dropdown-item" type="button" @click="sortName">A-Z</button></li>
+          <li ><button class="dropdown-item" type="button"  @click="sortAmount">Price (Low To High)</button></li>
+      
           </ul>
      </div>
     </div>
@@ -36,9 +36,9 @@
             View By Category:
           </button>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-            <li><button class="dropdown-item" type="button" @click="selectedCategory = 'Cardio'">Cardio</button></li>
-          <li><button class="dropdown-item" type="button" @click="selectedCategory = 'Weights'">Weights</button></li>
-          <li><button class="dropdown-item" type="button" @click="selectedCategory = 'Accessories'">Accessories</button></li>
+            <li><button class="dropdown-item" type="button" @click="selectedCardio = 'Cardio'">Cardio</button></li>
+          <li><button class="dropdown-item" type="button" @click="selectedWeights = 'Weights'">Weights</button></li>
+          <li><button class="dropdown-item" type="button" @click="selectedAccessories = 'Accessories'">Accessories</button></li>
           </ul>
      </div>
     </div>
@@ -46,12 +46,15 @@
   </div>
 </div>
 
-<div class="row" style="padding: 3%;">
+<div class="row" id="display" style="padding: 3%;">
 
 </div>
 <div>
   
 </div>
+ 
+ 
+
 
  <div class="products" v-if="products">
     <div class="card" v-for="product in products" :key= "product.prodID">
@@ -64,7 +67,7 @@
     <!-- <div class="col"> -->
       <strong>{{ product.prodName }}</strong>
       <br>
-      <span class="price">${{ product.amount }}</span>
+      <span class="price">R{{ product.amount }}</span>
       <br>
         <div class="button-contain">
           <router-link :to="{ name: 'singleProd', params: { id: product.prodID }, query: {
@@ -75,7 +78,7 @@
               amount: product.amount,
             }}"
         >
-        <button>
+        <button class="btn">
             View Details
           </button>
         </router-link>
@@ -100,30 +103,50 @@ export default {
       computed:{
         products(){
             return this.$store.state.products
-        },
-        // search
-        filteredProducts() {
-      if (this.searchQuery === '') {
-        return this.products;
-      }
+        },   
+        selectedCardio(){
+      return this.$store.state.products.find(products => products.Category ==='cardio');
+    }  
+       },
+       data() {
+        
+       return {
+      searchQuery: '',
+    
+    };
+  }, 
+       methods:{
+        
+  // search
+  searchProducts() {
+  console.log('its clicked')
+  return this.$store.state.products.filter((product) => {
+  return product.prodName.includes(this.searchQuery);
+});
+ 
+}
 
-      return this.products.filter((product) => {
-        return (
-          product.prodName.includes(this.searchQuery) ||
-          product.amount.includes(this.searchQuery) ||
-          product.category.includes(this.searchQuery)
-
-
-        );
-      });
+,
+    // sort amount
+    sortAmount() {
+      return this.$store.state.products.sort(
+    (p2, p1) => (p2.amount < p1.amount) ? -1 : (p2.amount > p1.amount) ? 1 : 0);
+     
+      },
+    // sort by name 
+    sortName() {
+      return this.$store.state.products.sort(
+    (p2, p1) => (p2.prodName < p1.prodName) ? -1 : (p2.prodName > p1.prodName) ? 1 : 0);
+   
+    }
+   
     },
 
-    
-       },
        mounted(){
         this.$store.dispatch('fetchProducts')
+  
        } 
-       }
+     }
 
 
 </script>
@@ -186,7 +209,7 @@ text-align: left;
 bottom: 0;
 }
 
-.button-contain button{
+/* .button-contain button{
   background-color: var(---color);
   border: 1px solid #0B0B0B;
   padding: 5px;
@@ -197,7 +220,7 @@ bottom: 0;
   background-color:#0B0B0B;
   color: white;
   box-sizing: 2px 2px 20px black;
-}
+} */
 
 .btn{
   border: 1px solid #44A1A0;
