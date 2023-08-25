@@ -17,7 +17,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-  <form @submit.prevent="addUser">
+  <form @submit.prevent="newUser">
   <!-- Profile image  -->
   <div class="mb-3">
   <label for="userImage" class="form-label">Image Url</label>
@@ -228,7 +228,7 @@
       </div>
       <div class="modal-footer">
         <!-- for adding the user -->
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary" @click="editProd()">Save changes</button>
       </div>
     </div>
   </div>
@@ -252,7 +252,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-    <form @submit.prevent="addProd">
+    <form @submit.prevent="newProd">
   <!-- Profile image  -->
   <div class="mb-3">
   <label for="prodImage" class="form-label">Image Url</label>
@@ -282,7 +282,7 @@
       </div>
       <div class="modal-footer">
         <!-- for adding the user -->
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary" @click="addProduct(addProd)">Save changes</button>
       </div>
     </div>
   </div>
@@ -328,10 +328,10 @@ export default {
     return this.$store.state.products
     },
     newProd (){
-   return this.$store.dispatch('addProduct', this.addProd)
+   return this.$store.dispatch('registerProduct', this.addProd)
    },
    newUser(){
-    return this.$store.dispatch('addUser', this.addUser)
+    return this.$store.dispatch('register', this.addUser)
    }
   },
   mounted() {
@@ -347,6 +347,14 @@ export default {
     try {
       await this.$store.dispatch("deleteProduct", prodID);
       alert("Product Deleted")
+    } catch (error) {
+      this.errorMsg = "An error occurred."
+    }
+  },
+  async addProduct() {
+    try {
+      await this.$store.dispatch("registerProduct",this.addProd);
+      alert("Product Added")
     } catch (error) {
       this.errorMsg = "An error occurred."
     }
