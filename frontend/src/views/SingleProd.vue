@@ -1,5 +1,5 @@
 <template>
-<div class="container ">
+<div class="container" style="padding: 3%;">
   <div class="row align-items-start">
     <div class="col-7 text-center">
       <img :src="$route.query.prodURL" class="card-img-top" alt="...">
@@ -10,7 +10,9 @@
         <h5 class="card-text"><span class="bold">Avail Stock:</span> {{ $route.query.quantity }}</h5>
         <h5 class="card-text"><span class="bold">Category:</span> {{ $route.query.Category }}</h5>
         <h5 class="card-text"><span class="bold">Price: </span>{{ $route.query.amount }}</h5>
-        <button v-on:click="cart"><i class="bi bi-cart-plus"></i></button>
+        <button v-on:click="cart"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+</svg></button>
       </div>
     </div>
   </div>

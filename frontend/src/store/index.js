@@ -24,7 +24,7 @@ export default createStore({
     setUser(state, user){
       state.user = user
     },
-    addUser(state, user){
+    register(state, user){
       state.users.push(user)
     },
     deleteUser(state, userID) {
@@ -33,7 +33,7 @@ export default createStore({
     updateUser(state, user){
       state.users = state.users.map(u => u.id === user.id ? user : u)
     },
-    addProduct (state, product){
+    registerProduct (state, product){
       state.users.push(product)
     },
     setProducts(state, products){
@@ -111,7 +111,7 @@ export default createStore({
     // update user
     async updateUser(context, payload) {
       try {
-        const response = await axios.put(`${eompBackend}user/${payload.id}`, payload);
+        const response = await axios.patch(`${eompBackend}user/${payload.id}`, payload);
         const { msg } = response.data;
   
         if (msg) {
@@ -140,15 +140,15 @@ export default createStore({
       },
   
       // addUser
-      async addUser(context, payload) {
+      async register(context, payload) {
         try {
-          const response = await axios.post(`${eompBackend}user/add`, payload);
+          const response = await axios.post(`${eompBackend}register/`, payload);
           const { msg, user } = response.data;
     
           if (msg) {
             context.commit("setMsg", msg);
           } else {
-            context.commit("addUser", user); // Update the users array in the state
+            context.commit("register", user); // Update the users array in the state
             context.commit("setMsg", "User added successfully");
           }
         } catch (e) {
@@ -156,15 +156,15 @@ export default createStore({
         }
       },
       // add Product
-    async addProduct(context, payload) {
+    async registerProduct(context, payload) {
         try {
-          const response = await axios.post(`${eompBackend}product/add`, payload);
+          const response = await axios.post(`${eompBackend}product/register`, payload);
           const { msg, product } = response.data;
     
           if (msg) {
             context.commit("setMsg", msg);
           } else {
-            context.commit("addProduct", product);
+            context.commit("registerProduct", product);
             context.commit("setMsg", "Product added successfully");
           }
         } catch (e) {
@@ -191,7 +191,7 @@ export default createStore({
     // updateProduct
     async updateProduct(context, payload) {
       try {
-        const response = await axios.put(`${eompBackend}product/${payload.id}`, payload);
+        const response = await axios.patch(`${eompBackend}product/${payload.id}`, payload);
         const { msg } = response.data;
   
         if (msg) {
