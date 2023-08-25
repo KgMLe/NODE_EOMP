@@ -40,7 +40,7 @@ routes.post("/login", bodyParser.json(), (req, res) => {
 //---------------------------------------------------
 //-----------routing to PRODUCTS-----------------------
 
-//get all order
+//get all orders
 routes.get("/products", (req, res) => {
   products.fetchProducts(req, res);
 });
