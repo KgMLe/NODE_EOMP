@@ -27,6 +27,12 @@ export default createStore({
     addUser(state, user){
       state.users.push(user)
     },
+    deleteUser(state, userID) {
+      state.users = state.users.filter(user => user.id !== userID);
+    },
+    updateUser(state, user){
+      state.users = state.users.map(u => u.id === user.id ? user : u)
+    },
     addProduct (state, product){
       state.users.push(product)
     },
@@ -39,7 +45,9 @@ export default createStore({
     deleteProduct(state, prodID) {
     state.products = state.products.filter(product => product.id !== prodID);
     },
-  
+    updateProduct(state, product){
+      state.products = state.products.map(p => p.id === product.id ? product : p)
+    },
     selectedCategory(state, category){
       state.selectedCategory = category
     },
@@ -53,8 +61,9 @@ export default createStore({
       state.msg = msg
     },
   },
-  // fetch products
+  
   actions: {
+    // fetch products
     async fetchProducts(context){
       try{
           const {data} = await axios.get(`${eompBackend}products`)
@@ -72,7 +81,6 @@ export default createStore({
         context.commit("setMsg", "An error occured")
       }
     },
-
     //fetch categories
     async fetchCategories(context){
       try{
@@ -90,7 +98,63 @@ export default createStore({
       }catch(e){
         context.commit("setMsg", "An error occured")
       }
-    },  
+    }, 
+    // fetch user
+    async fetchUser(context, id){
+      try{
+          const {data} = await axios.get(`${eompBackend}user/${id}`)
+          context.commit("setUser", data.results )
+      }catch(e){
+        context.commit("setMsg", "An error occured")
+      }
+    },
+    // update user
+    async updateUser(context, payload) {
+      try {
+        const response = await axios.put(`${eompBackend}user/${payload.id}`, payload);
+        const { msg } = response.data;
+  
+        if (msg) {
+          context.commit("setMsg", msg);
+        } else {
+          context.commit("setMsg", "User updated successfully");
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error occurred while updating the user");
+      }
+    }, 
+      // deleteUser
+      async deleteUser(context, id) {
+        try {
+          const response = await axios.delete(`${eompBackend}user/${id}`);
+          const { msg } = response.data;
+    
+          if (msg) {
+            context.commit("setMsg", msg);
+          } else {
+            context.commit("setMsg", "User deleted successfully");
+          }
+        } catch (e) {
+          context.commit("setMsg", "An error occurred while deleting the user");
+        }
+      },
+  
+      // addUser
+      async addUser(context, payload) {
+        try {
+          const response = await axios.post(`${eompBackend}user/add`, payload);
+          const { msg, user } = response.data;
+    
+          if (msg) {
+            context.commit("setMsg", msg);
+          } else {
+            context.commit("addUser", user); // Update the users array in the state
+            context.commit("setMsg", "User added successfully");
+          }
+        } catch (e) {
+          context.commit("setMsg", "An error occurred while adding the user");
+        }
+      },
       // add Product
     async addProduct(context, payload) {
         try {
@@ -137,55 +201,6 @@ export default createStore({
         }
       } catch (e) {
         context.commit("setMsg", "An error occurred while updating the product");
-      }
-    },
-  
-    // updateUser
-    async updateUser(context, payload) {
-      try {
-        const response = await axios.put(`${eompBackend}user/${payload.id}`, payload);
-        const { msg } = response.data;
-  
-        if (msg) {
-          context.commit("setMsg", msg);
-        } else {
-          context.commit("setMsg", "User updated successfully");
-        }
-      } catch (e) {
-        context.commit("setMsg", "An error occurred while updating the user");
-      }
-    },
-  
-    // deleteUser
-    async deleteUser(context, id) {
-      try {
-        const response = await axios.delete(`${eompBackend}user/${id}`);
-        const { msg } = response.data;
-  
-        if (msg) {
-          context.commit("setMsg", msg);
-        } else {
-          context.commit("setMsg", "User deleted successfully");
-        }
-      } catch (e) {
-        context.commit("setMsg", "An error occurred while deleting the user");
-      }
-    },
-
-    // addUser
-    async addUser(context, payload) {
-      try {
-        const response = await axios.post(`${eompBackend}user/add`, payload);
-        const { msg, user } = response.data;
-  
-        if (msg) {
-          context.commit("setMsg", msg);
-        } else {
-          context.commit("addUser", user); // Update the users array in the state
-          context.commit("setMsg", "User added successfully");
-        }
-      } catch (e) {
-        context.commit("setMsg", "An error occurred while adding the user");
       }
     },
   },

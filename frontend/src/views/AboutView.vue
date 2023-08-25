@@ -79,6 +79,7 @@
 
 h3{
   font-weight: bold;
+  padding: 3%;
 }
 
 #intro{
@@ -160,7 +161,7 @@ img[alt= "gym"]{
 }
 
 img[alt="category"]{
-  width: 17rem;
+  width: 10rem;
 }
 .row-1{
   grid-template-columns: auto;

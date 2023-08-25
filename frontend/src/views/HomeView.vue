@@ -36,7 +36,7 @@
 
 <style scoped>
 #landingpage{
-background-image: url("https://i.postimg.cc/D0B5XzGJ/Physically-Designate-Workout-Space-Home.jpg");
+background-image: url("https://hips.hearstapps.com/hmg-prod/images/ft-home-f-mix-3098-1578079748.jpg?crop=1xw:1xh;center,top&resize=2048:*");
 background-position: center;
 /* background-repeat: no-repeat; */
 background-size: cover;
