@@ -2,11 +2,20 @@
   <div class="container-fluid">
 <div class="row" id="prodpage">
 <div id="prodintro">
-  SHOP OUR PRODUCTS
+  <h1>SHOP OUR PRODUCTS</h1>
 </div>
 </div>
-<div class="container text-center" style="padding-top: 3%;">
-  <div class="row">
+<div class="container text-center " style="padding-top: 3%;">
+  <div class="row text-center">
+    <div class="col">
+        <!-- search -->
+        <form class="d-flex" role="search" @submit.prevent="search">
+        <input class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search" v-model="searchQuery">
+        <button class="btn" type="submit">Search</button>  
+        </form>
+    </div>
+  </div>
+  <div class="row text-center">
     <div class="col">
       <!-- sort by name and prize -->
       <div class="btn-group">
@@ -33,13 +42,7 @@
           </ul>
      </div>
     </div>
-    <div class="col">
-        <!-- search -->
-        <form class="d-flex" role="search" @submit.prevent="search">
-        <input class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search" v-model="searchQuery">
-        <button class="btn" type="submit">Search</button>  
-        </form>
-    </div>
+   
   </div>
 </div>
 
@@ -66,8 +69,9 @@
         <div class="button-contain">
           <router-link :to="{ name: 'singleProd', params: { id: product.prodID }, query: {
               prodName: product.prodName,
-              catergory: product.category,
-              prodURL: product.prodURL,
+              Category: product.Category,
+              quantity: product.quantity,
+              prodURL: product.prodUrl,
               amount: product.amount,
             }}"
         >
@@ -134,7 +138,7 @@ background-image: url("https://i.postimg.cc/MTHNk2k4/best-home-workout-equipment
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-
+/* height: 60vh; */
 }
 
 #prodintro{
@@ -143,6 +147,7 @@ background-size: cover;
   font-size: 3rem;
   font-weight: bold;
   color: white;
+  text-shadow: 2px 2px 20px black;
 }
 .products{
   display:grid;
@@ -195,6 +200,7 @@ bottom: 0;
 }
 
 .btn{
+  border: 1px solid #44A1A0;
   background-color: #44A1A0;
   color: white;
 }
@@ -216,10 +222,15 @@ strong{
   text-align: left;
 }
 
-
+.row{
+  margin: 10px;
+}
 @media screen and (max-width: 700px) {
   .products {
     grid-template-columns: auto;
+  }
+  .btn-group > button{
+font-size: 10px;
   }
 }
 
@@ -227,6 +238,11 @@ strong{
   .products {
     grid-template-columns: auto;
   }
- 
+  #prodintro h1{
+    font-size: 20px;
+  }
+  .btn{
+    margin: 10px;
+  }
 }
 </style>

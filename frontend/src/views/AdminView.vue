@@ -280,5 +280,10 @@ export default {
   background-color: black;
   color: #44A1A0;
 }
-
+ 
+  @media screen and (max-width: 700px) {
+ body{
+  font-size: 10px;
+ }
+}
 </style>
