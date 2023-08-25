@@ -20,9 +20,9 @@
              <li class="nav-item">
                <router-link class="nav-link" to="/admin">Admin</router-link>
              </li>
-             <!-- <li class="nav-item">
+             <li class="nav-item">
                <router-link class="nav-link" to="/contact">Contact</router-link>
-             </li> -->
+             </li>
      </ul>
      
      <router-link to="/products" class="btn">Shop Now</router-link>
@@ -68,6 +68,15 @@ button{
 .btn:hover{
   background-color: black;
   color: #44A1A0;
+}
+
+@media screen and (max-width: 700px) { 
+ a{
+  font-size: 10px;
+ }
+.navbar-toggler{
+  width: 10%;
+}
 }
 
 </style>

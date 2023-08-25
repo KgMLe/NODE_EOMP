@@ -42,7 +42,9 @@ background-position: center;
 background-size: cover;
 background-attachment: fixed;
 }
-
+h1{
+  text-shadow: 2px 2px 20px black;
+}
 #welcome{
   font-weight: bold;
   padding: 3%;
