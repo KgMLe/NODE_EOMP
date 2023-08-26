@@ -238,7 +238,7 @@
       </div>
       <div class="modal-footer">
         <!-- for update the product -->
-        <button type="submit" class="btn btn-primary" @click="updateProd(editProd)">Save changes</button>
+        <button type="submit" class="btn btn-primary" @click="updateProd(prodID)">Save changes</button>
       </div>
     </div>
   </div>
