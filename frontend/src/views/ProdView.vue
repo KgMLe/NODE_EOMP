@@ -209,18 +209,6 @@ text-align: left;
 bottom: 0;
 }
 
-/* .button-contain button{
-  background-color: var(---color);
-  border: 1px solid #0B0B0B;
-  padding: 5px;
-  width: 50%;
-  margin: 3px;
-}
- .button-contain button:hover{
-  background-color:#0B0B0B;
-  color: white;
-  box-sizing: 2px 2px 20px black;
-} */
 
 .btn{
   border: 1px solid #44A1A0;
@@ -237,10 +225,6 @@ strong{
   font-size: 15px;
 }
 
-.bottom{
-  position: relative;
-  bottom: 0;
-}
 .row{
   text-align: left;
 }
@@ -248,7 +232,7 @@ strong{
 .row{
   margin: 10px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   .products {
     grid-template-columns: auto;
   }

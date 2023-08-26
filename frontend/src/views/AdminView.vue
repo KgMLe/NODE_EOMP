@@ -62,7 +62,7 @@
       </div>
       <div class="modal-footer">
         <!-- for adding the user -->
-        <button type="submit" class="btn btn-primary" >Save changes</button>
+        <button type="submit" class="btn btn-primary" @click="registerUser(addUser)" >Save changes</button>
       </div>
     </div>
   </div>
@@ -95,7 +95,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-  <form @submit.prevent="updateUser" >
+        <!-- edit user -->
+  <form @submit.prevent="updatedUser" :key="user.userID">
   <!-- Profile image  -->
   <div class="mb-3">
   <label for="userImage" class="form-label">Image Url</label>
@@ -104,48 +105,48 @@
   <!-- first name -->
   <div class="mb-3">
   <label for="firstName" class="form-label">First Name</label>
-  <input type="text" class="form-control" id="firstName" v-model="updateUser.firstName">
+  <input type="text" class="form-control" id="firstName" v-model="editUser.firstName">
   </div>
   <!-- last name -->
   <div class="mb-3">
     <label for="lastName" class="form-label">Last Name</label>
-  <input type="text" class="form-control" id="lastName" v-model="updateUser.lastName">
+  <input type="text" class="form-control" id="lastName" v-model="editUser.lastName">
   </div>
   <!-- age -->
   <div class="mb-3">
     <label for="age" class="form-label">Age</label>
-  <input type="number" class="form-control" id="age" v-model="updateUser.userAge">
+  <input type="number" class="form-control" id="age" v-model="editUser.userAge">
   </div>
   <!-- gender -->
   <div class="mb-3">
     <label for="gender" class="form-label">Gender</label>
-  <input type="text" class="form-control" id="gender" v-model="updateUser.Gender">
+  <input type="text" class="form-control" id="gender" v-model="editUser.Gender">
   </div>
   <!-- email -->
   <div class="mb-3">
     <label for="eMail" class="form-label">E-mail</label>
-  <input type="text" class="form-control" id="eMail" v-model="updateUser.emailAdd">
+  <input type="text" class="form-control" id="eMail" v-model="editUser.emailAdd">
   </div>
   <!-- password -->
   <div class="mb-3">
     <label for="inputPassword5" class="form-label">Password</label>
-<input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" v-model="addUser.userPass">
+<input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" v-model="editUser.userPass">
   </div>
   <!-- Role -->
   <div class="mb-3">
     <label for="role" class="form-label">Role</label>
-  <input type="text" class="form-control" id="role" v-model="addUser.userRole">
+  <input type="text" class="form-control" id="role" v-model="editUser.userRole">
   </div>
   </form>
       </div>
       <div class="modal-footer">
-        <!-- for adding the user -->
-        <button type="submit" class="btn btn-primary" >Save changes</button>
+        <!-- for editing the user -->
+        <button type="submit" class="btn btn-primary" @click="updateUser(editUser)">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-
+<!-- delete user -->
       <div class="col">
         <button class="btn"   @click="delUser(user.ID)">Del<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash-fill" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
@@ -197,8 +198,9 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Product</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <!-- EDIT PRODUCT -->
       <div class="modal-body">
-    <form @submit.prevent="editProd">
+    <form @submit.prevent="updatedProd" :key="product.prodID">
   <!-- Profile image  -->
   <div class="mb-3">
   <label for="prodImage" class="form-label">Image Url</label>
@@ -227,8 +229,8 @@
   </form>
       </div>
       <div class="modal-footer">
-        <!-- for adding the user -->
-        <button type="submit" class="btn btn-primary" @click="editProd()">Save changes</button>
+        <!-- for update the product -->
+        <button type="submit" class="btn btn-primary" @click="updateProd(editProd)">Save changes</button>
       </div>
     </div>
   </div>
@@ -281,7 +283,7 @@
   </form>
       </div>
       <div class="modal-footer">
-        <!-- for adding the user -->
+        <!-- for adding the product -->
         <button type="submit" class="btn btn-primary" @click="addProduct(addProd)">Save changes</button>
       </div>
     </div>
@@ -317,7 +319,25 @@ export default {
        emailAdd: "",
        userPass: "",
        userProfile: ""
-      }   
+      },
+      editProd :{
+      prodName: "",
+      quantity: "",
+      amount: "",
+      Category: "",
+      prodUrl: ""
+      },
+      editUser:{
+       userID : "",
+       firstName: "",
+       lastName: "",
+       userAge: "",
+       Gender: "",
+       userRole: "",
+       emailAdd: "",
+       userPass: "",
+       userProfile: ""
+      }
     };
   },
   computed: {
@@ -327,11 +347,17 @@ export default {
     products(){
     return this.$store.state.products
     },
-    newProd (){
+   newProd (){
    return this.$store.dispatch('registerProduct', this.addProd)
    },
    newUser(){
     return this.$store.dispatch('register', this.addUser)
+   },
+   updatedProd(){
+    return this.$store.dispatch ('updateProduct', this.editProd)
+   },
+   updatedUser(){
+    return this.$store.dispatch ('updateUser', this.editUser)
    }
   },
   mounted() {
@@ -351,14 +377,6 @@ export default {
       this.errorMsg = "An error occurred."
     }
   },
-  async addProduct() {
-    try {
-      await this.$store.dispatch("registerProduct",this.addProd);
-      alert("Product Added")
-    } catch (error) {
-      this.errorMsg = "An error occurred."
-    }
-  },
   async delUser(userID) {
     try {
       await this.$store.dispatch("deleteUser", userID);
@@ -367,8 +385,26 @@ export default {
       this.errorMsg = "An error occurred "
     }
   },
+  // add
+  async addProduct() {
+    try {
+      await this.$store.dispatch("registerProduct",this.addProd);
+      alert("Product Added")
+    } catch (error) {
+      this.errorMsg = "An error occurred."
+    }
+  },
+  async registerUser() {
+    try {
+      await this.$store.dispatch("register",this.addUser);
+      alert("User Added")
+    } catch (error) {
+      this.errorMsg = "An error occurred."
+    }
+  },
   // update
   async updateUser() {
+    console.log("clicked");
     try {
       await this.$store.dispatch('updateUser', this.updatedUser);
       alert("User Updated")
@@ -376,9 +412,10 @@ export default {
       this.errorMsg = "An error occurred while updating the user."
     }
   },
-  async editProd() {
+  async updateProd() {
+    console.log("clicked");
       try {
-        const response = await this.$store.dispatch('updateProduct', this.updatedProduct);
+        const response = await this.$store.dispatch('updateProduct', this.editProd);
         
         if (response.msg) {
           alert("Oops something seems wrong")
@@ -415,6 +452,7 @@ margin: 10px;
  .card-container .card img{
   text-align: center;
   width:80px;
+  border-radius: 50%;
  }
  tbody img{
   width:70px;

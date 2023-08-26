@@ -1,8 +1,8 @@
 <template>
  <div class="container-fluid" style="padding:3% ;">
   <div class="container text-center">
-  <div class="row align-items-start">
-    <div class="col" id="intro">
+  <!-- <div class="row align-items-start"> -->
+    <div class=".col-6" id="intro">
       <h3>
           Discover the Future of Home Fitness with Us!
         </h3>
@@ -11,11 +11,11 @@
           At Fit Space Solutions, we understand that space shouldn't limit your commitment to a healthier lifestyle. That's why we've meticulously curated a selection of home gym equipment that caters to both expansive and cozy living spaces. Whether you have a spacious dedicated room or a compact corner, we have the perfect solutions to transform your space into a fitness sanctuary.
         </p>
     </div>
-    <div class="col">
+    <div class=".col-6">
       <img src="https://i.postimg.cc/mrRK67tt/image.jpg" alt="gym">
     </div>
   </div>
-</div>
+<!-- </div> -->
   <!-- oooooooooooo -->
 
     <div class="row">
@@ -129,6 +129,8 @@ img[alt= "category"]{
   text-align: center;
   /* border: 1px solid black; */
   width: 20rem;
+  padding: 2%;
+  justify-content: space-around;
 }
 button{
   color: #0B0B0B;
@@ -148,7 +150,7 @@ text-align: center;
 /* ---------------------------------------------------------------- */
 /* ---------------------------------------------------------------- */
 /* ---------------------------------------------------------------- */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   #name{
     font-size: 20px;
   }
@@ -157,7 +159,7 @@ text-align: center;
   }
   
 img[alt= "gym"]{
-    width: 17rem;
+    width: 35rem;
 }
 
 img[alt="category"]{
@@ -169,5 +171,28 @@ img[alt="category"]{
 .row-category{
   grid-template-columns: auto;
  }
+
+ @media screen and (max-width: 539px) {
+  #name{
+    font-size: 20px;
+  }
+  p{
+    font-size: 10px;
+  }
+  
+img[alt= "gym"]{
+    width: 20rem;
+}
+
+img[alt="category"]{
+  width: 10rem;
+}
+.row-1{
+  grid-template-columns: auto;
+}
+.row-category{
+  grid-template-columns: auto;
+ }
+}
 }
 </style>

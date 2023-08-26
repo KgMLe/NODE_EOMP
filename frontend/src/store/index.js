@@ -142,7 +142,7 @@ export default createStore({
       // addUser
       async register(context, payload) {
         try {
-          const response = await axios.post(`${eompBackend}register/`, payload);
+          const response = await axios.post(`${eompBackend}register`, payload);
           const { msg, user } = response.data;
     
           if (msg) {

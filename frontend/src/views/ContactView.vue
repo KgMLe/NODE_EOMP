@@ -7,11 +7,12 @@
   <form action="https://formspree.io/f/mjvqvkoe"
   method="POST">
     <div class="row" style="padding: 3%;">
-    <div class="col-sm-6" id="contactme" style="padding-left: 7%;">
+    <div class="col-sm-6" id="contactme" >
         <span>
           Exercise not only changes your body, it changes your mind attitude and mood
         </span>
         <br>
+        <p>How can we help?</p>
         <br>
         <br>
         <br>
@@ -84,6 +85,15 @@
   background-color: black;
   color: #44A1A0;
   }
+
+  @media(max-width: 768px) {
+  
+
+  span{
+  font-size: 1.5rem;
+  padding-top: 7%;
+}
+}
   
   @media(max-width: 567px) {
   
@@ -93,7 +103,7 @@
     } 
   
     span{
-    font-size: 3rem;
+    font-size: 1.5rem;
     justify-content: end;
   }
   
