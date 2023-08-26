@@ -96,7 +96,11 @@
       </div>
       <div class="modal-body">
         <!-- edit user -->
-  <form @submit.prevent="updatedUser" :key="user.userID">
+  <form @submit.prevent="updatedUser" >
+  <div class="mb-3">
+  <label for="userImage" class="form-label">User ID</label>
+  <input type="text" class="form-control" id="userImage" v-model="editUser.userID">
+  </div> 
   <!-- Profile image  -->
   <div class="mb-3">
   <label for="userImage" class="form-label">Image Url</label>
@@ -141,14 +145,14 @@
       </div>
       <div class="modal-footer">
         <!-- for editing the user -->
-        <button type="submit" class="btn btn-primary" @click="updateUser(editUser)">Save changes</button>
+        <button type="submit" class="btn btn-primary" @click="updateUser(userID)">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 <!-- delete user -->
       <div class="col">
-        <button class="btn"   @click="delUser(user.ID)">Del<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash-fill" viewBox="0 0 16 16">
+        <button class="btn"   @click="delUser(user.userID)">Del<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash-fill" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
   <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 </svg></button>
@@ -201,6 +205,10 @@
       <!-- EDIT PRODUCT -->
       <div class="modal-body">
     <form @submit.prevent="updatedProd" :key="product.prodID">
+      <div class="mb-3">
+  <label for="prodImage" class="form-label">Product ID</label>
+  <input type="text" class="form-control" id="prodID" v-model="editProd.prodID">
+  </div>    
   <!-- Profile image  -->
   <div class="mb-3">
   <label for="prodImage" class="form-label">Image Url</label>
@@ -321,6 +329,7 @@ export default {
        userProfile: ""
       },
       editProd :{
+      prodID: "",
       prodName: "",
       quantity: "",
       amount: "",
@@ -403,19 +412,19 @@ export default {
     }
   },
   // update
-  async updateUser() {
+  async updateUser(userID) {
     console.log("clicked");
     try {
-      await this.$store.dispatch('updateUser', this.updatedUser);
+      await this.$store.dispatch('updateUser', userID);
       alert("User Updated")
     } catch (error) {
       this.errorMsg = "An error occurred while updating the user."
     }
   },
-  async updateProd() {
+  async updateProd(prodID) {
     console.log("clicked");
       try {
-        const response = await this.$store.dispatch('updateProduct', this.editProd);
+        const response = await this.$store.dispatch('updateProduct', prodID);
         
         if (response.msg) {
           alert("Oops something seems wrong")
